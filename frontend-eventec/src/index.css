@@ -16,11 +16,18 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background-color: #2F2F35;
+  color: #FFFFFF;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  position: relative;
+}
+
+p {
+  position: relative;
 }
 
 button {
@@ -40,4 +47,15 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+span {
+  position: relative;
+}
+.cuadrado {
+  width: 450px;
+  height: 300px;
+  background: #FFFFFF;
+  border-radius: 8px;
+  position: relative;
+  color: gray;
 }
