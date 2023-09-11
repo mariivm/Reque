@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 const NavbarEventec = () => {
   return (
     <>
-        <Navbar expand="lg">
+        <Navbar expand="lg" style={{marginBottom: "40px"}}>
             <Container>
                 <Navbar.Text className="navbar-brand"><Link to="/calendar">
                     <span style={{color: "white"}}>EVEN</span>

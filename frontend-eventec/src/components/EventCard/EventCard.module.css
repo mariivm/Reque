@@ -1,0 +1,29 @@
+.container {
+    margin-top: 40px;
+    width: 80vw;
+    border: 1px white solid;
+    border-radius: 20px;
+    padding: 30px
+}
+
+.feature {
+    font-size: 22px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.cupos {
+    font-size: 20px;
+}
+
+.button {
+    margin-top: 15px;
+    height: 60px;
+    border-radius: 20px;
+    background-color: #22AAAC;
+    border: none;
+}
+
+.button:hover {
+    background-color: #22aaacc6;
+}

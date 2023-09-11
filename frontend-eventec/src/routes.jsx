@@ -2,7 +2,8 @@ import Root from './routes/root';
 import Principal from './routes/principal';
 //import Login from './routes/login';
 
-export default  [
+const routes = 
+[
     {
       path: "/",
       element: <Root />
@@ -15,4 +16,5 @@ export default  [
     //   path: "./routes/login",
     //   element: <Login />,
     // },
-  ]
+]
+export default routes
