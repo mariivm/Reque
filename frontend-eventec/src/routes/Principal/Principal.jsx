@@ -1,4 +1,4 @@
-import NavbarEventec from "../../components/Navbar"
+import NavbarEventec from "../../components/Navbar/Navbar"
 import EventCard from "../../components/EventCard"
 import { Container, Row, Col } from "react-bootstrap"
 import styles from "./principal.module.css"

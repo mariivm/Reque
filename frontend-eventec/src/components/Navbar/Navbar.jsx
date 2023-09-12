@@ -27,7 +27,7 @@ const NavbarEventec = () => {
                     </Link></Navbar.Text>
                 <NavDropdown title="Opciones" className="justify-content-end">
                     <NavDropdown.Divider/>
-                    <NavDropdown.ItemText style={{color: "#ff1212"}} onClick={handleLogout}>Cerrar Sesion</NavDropdown.ItemText>
+                    <NavDropdown.ItemText className={styles.clickable} style={{color: "#ff1212"}} onClick={handleLogout}>Cerrar Sesion</NavDropdown.ItemText>
                 </NavDropdown>
             </Container>
         </Navbar>
