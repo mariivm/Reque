@@ -2,9 +2,8 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import { Button } from 'react-bootstrap';
-import { Link } from "react-router-dom"
 
-const registroEstudiante = () => {
+const RegistroEstudiante = () => {
   return (
     <div>
       <span style={{ left: "20px", top: "10px" }}>EVEN</span>
@@ -51,4 +50,4 @@ const registroEstudiante = () => {
   )
 }
 
-export default registroEstudiante
+export default RegistroEstudiante

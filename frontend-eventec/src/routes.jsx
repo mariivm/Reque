@@ -1,8 +1,8 @@
-import Root from './routes/root';
-import Principal from './routes/principal';
-import Login from './routes/loginEstudiante';
-import RegistroAso from './routes/registroAso';
-import RegistroEstudiante from './routes/registroEstudiante';
+import Root from './routes/Root';
+import Principal from './routes/Principal/Principal';
+import Login from './routes/LoginEstudiante';
+import RegistroAso from './routes/RegistroAso';
+import RegistroEstudiante from './routes/RegistroEstudiante';
 
 const routes = 
 [

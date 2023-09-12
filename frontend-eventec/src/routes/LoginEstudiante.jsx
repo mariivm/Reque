@@ -5,7 +5,7 @@ import Checkbox from '../assets/checkbox';
 import { Button } from 'react-bootstrap';
 import { Link } from "react-router-dom"
 
-const root = () => {
+const LoginEstudiante = () => {
   return (
     <div>
       <span style={{ left: "20px", top: "10px" }}>EVEN</span>
@@ -16,13 +16,13 @@ const root = () => {
       </h1>
 
       <p style={{ textAlign: "center", color: "#22AAA1", top: "50px" }}>
-        Ingresa a la plataforma como asociación
+        Ingresa a la plataforma como estudiante
       </p>
 
-      <div className="cuadrado" style={{ margin: "auto", textAlign: "center", top: "80px" }}>
+      <div class="cuadrado" style={{ margin: "auto", textAlign: "center", top: "80px", height: "320px" }}>
         <Row>
           <Col xs={10} style={{ position: "relative", margin: "auto", top: "30px" }}>
-            <Form.Control type="text" placeholder={"Correo de Asociación"} style={{ textAlign: "center" }}/>
+            <Form.Control type="text" placeholder={"Correo Institucional"} style={{ textAlign: "center" }}/>
             </Col>
         </Row>
         <br/>
@@ -41,14 +41,10 @@ const root = () => {
         <br/>
 
         <span style={{ color: "gray"}}>¿No tienes una cuenta?</span>
-        <span> <Link to="/registroAso" style={{ color: "#22AAA1" }}> <u>Regístrate</u></Link> </span>
-
-        <br/>
-
-        <span> <Link to="/loginEstudiante" style={{color: "#22AAA1"}}><u>Iniciar sesión como estudiante</u></Link> </span>
+        <span> <Link to="/registroEstudiante" style={{ color: "#22AAA1" }}> <u>Regístrate</u> </Link> </span>
       </div>
     </div>
   )
 }
 
-export default root
+export default LoginEstudiante
