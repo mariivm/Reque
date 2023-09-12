@@ -4,29 +4,29 @@ import Row from 'react-bootstrap/Row';
 import Checkbox from '../../assets/checkbox';
 import { Button } from 'react-bootstrap';
 import { Link, useNavigate } from "react-router-dom";
-// import { useState } from 'react';
-// import { loginEstudiante, useAuthDispatch } from '../../context';
+import { useState } from 'react';
+import { loginEstudiante, useAuthDispatch } from '../../context';
 import styles from "./acceso.module.css";
 
 const LoginEstudiante = () => {
-  // const [correoEstudiante, setCorreoEstudiante] = useState("");
-  // const [contrasena, setContrasena] = useState("");
-  // const navigate = useNavigate()
+  const [correoEstudiante, setCorreoEstudiante] = useState("");
+  const [contrasena, setContrasena] = useState("");
+  const navigate = useNavigate()
 
-  // const dispatch = useAuthDispatch();
+  const dispatch = useAuthDispatch();
 
-  // const handleLogin = async (e) => {
-  //   e.preventDefault();
-  //   let payload = {correoEstudiante, contrasena}
-  //   try {
-  //     let response = await loginEstudiante(dispatch, payload)
-  //     if (!response.user) return;
-  //     navigate("/calendar")
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    let payload = {correoEstudiante, contrasena}
+    try {
+      let response = await loginEstudiante(dispatch, payload)
+      if (!response.user) return;
+      navigate("/calendar")
+    } catch (error) {
+      console.log(error)
+    }
 
-  // }
+  }
   return (
     <div>
       <span className={styles.span} style={{ color: "#FFFFFF", left: "20px", top: "10px" }}>EVEN</span>
