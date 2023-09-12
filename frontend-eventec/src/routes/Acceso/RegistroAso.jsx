@@ -2,36 +2,37 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import { Button } from 'react-bootstrap';
+import styles from "./acceso.module.css"
 
 const RegistroAso = () => {
   return (
     <div>
-      <span style={{ left: "20px", top: "10px" }}>EVEN</span>
-      <span style={{ color: "#22AAA1", left: "20px", top: "10px" }}>TEC</span>
+      <span className={styles.span} style={{ color: "#FFFFFF", left: "20px", top: "10px" }}>EVEN</span>
+      <span className={styles.span} style={{ left: "20px", top: "10px" }}>TEC</span>
 
-      <h1 style={{ color: "#FFFFFF", textAlign: "center", top: "40px" }}>
+      <h1 className={styles.h1}>
         Crear una cuenta
       </h1>
 
-      <p style={{ textAlign: "center", color: "#22AAA1", top: "50px" }}>
+      <p className={styles.p}>
         Regístrate como Asociación
       </p>
 
-      <div class="cuadrado" style={{ margin: "auto", textAlign: "center", top: "80px", height: "310px" }}>
+      <div className={styles.cuadrado}>
         <Row>
-          <Col xs={10} style={{ position: "relative", margin: "auto", top: "30px" }}>
+          <Col xs={10} className={styles.col}>
             <Form.Control type="text" placeholder={"Nombre de Asociación"} style={{ textAlign: "center" }}/>
             </Col>
         </Row>
         <br/>
         <Row>
-          <Col xs={10} style={{ position: "relative", margin: "auto", top: "30px" }}>
+          <Col xs={10} className={styles.col}>
             <Form.Control type="text" placeholder={"Correo de Asociación"} style={{ textAlign: "center" }}/>
             </Col>
         </Row>
         <br/>
         <Row>
-          <Col xs={10} style={{ position: "relative", margin: "auto", top: "30px" }}>
+          <Col xs={10} className={styles.col}>
             <Form.Control type="text" placeholder={"Contraseña"} style={{ textAlign: "center" }}/>
             </Col>
         </Row>
@@ -39,7 +40,7 @@ const RegistroAso = () => {
         <br/>
         <br/>
 
-        <Button style={{ backgroundColor: "#22AAA1", width: "380px", height: "50px" }}> Sign up </Button>
+        <Button className={styles.button}> Sign up </Button>
       </div>
     </div>
   )
