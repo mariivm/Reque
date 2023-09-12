@@ -19,7 +19,7 @@ const Root = () => {
     let payload = {correoAsociacion, contrasena}
     try {
       let response = await loginAso(dispatch, payload)
-      if (!response.user) return;
+      if (!response.token) return;
       navigate("/calendar")
     } catch (error) {
       console.log(error)
