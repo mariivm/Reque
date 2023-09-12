@@ -1,11 +1,51 @@
-from Connection import connection
+from db_functions.Connection import connection
 
-def fetchUsuario(usuarioID):
+def fetchUsuarioAso(correo, contrasena):
     conn = connection()
     cursor = conn.cursor()
-    query = f"SELECT TOP 1 us.usuarioid, us.correo, us.tipo FROM Usuarios us WHERE usuarioid = {usuarioID}"
+    query = f"SELECT * FROM Usuarios"
     cursor.execute(query)
-    datos = cursor.fetchone()
+    datos = cursor.fetchval()
+    cursor.close()
+    conn.close()
+    return datos
+
+def SP_insertarAso(correo, nombre, contrasena):
+    conn = connection()
+    cursor = conn.cursor()
+    query = """\
+        SET NOCOUNT ON;
+        DECLARE @RC int;
+        EXEC @RC = [my_database].[dbo].[my_sp] ?, ?, ?
+        SELECT @RC AS rc;
+    """
+    cursor.execute(query, (correo, nombre, contrasena))
+    datos = cursor.fetchval()
+    cursor.close()
+    conn.close()
+    return datos
+
+def fetchUsuarioEstudiante(correo, contrasena):
+    conn = connection()
+    cursor = conn.cursor()
+    query = f"SELECT * FROM Usuarios"
+    cursor.execute(query)
+    datos = cursor.fetchval()
+    cursor.close()
+    conn.close()
+    return datos
+
+def SP_insertarEstudiante(correo, nombre, contrasena, carnet):
+    conn = connection()
+    cursor = conn.cursor()
+    query = """\
+        SET NOCOUNT ON;
+        DECLARE @RC int;
+        EXEC @RC = [my_database].[dbo].[my_sp] ?, ?, ?
+        SELECT @RC AS rc;
+    """
+    cursor.execute(query, (correo, nombre, contrasena))
+    datos = cursor.fetchval()
     cursor.close()
     conn.close()
     return datos

@@ -25,8 +25,8 @@ const Root = () => {
     } catch (error) {
       console.log(error)
     }
-
-  }
+    }
+    
   return (
     <div>
       <span className={styles.span} style={{ color: "#FFFFFF", left: "20px", top: "10px" }}>EVEN</span>

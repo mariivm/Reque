@@ -1,9 +1,20 @@
-import NavbarEventec from "../../components/Navbar"
+import NavbarEventec from "../../components/Navbar/Navbar"
 import EventCard from "../../components/EventCard"
 import { Container, Row, Col } from "react-bootstrap"
 import styles from "./principal.module.css"
+import { useAuthState } from "../../context"
+import { useNavigate } from "react-router-dom"
+import { useEffect } from "react"
 
 const Principal = () => {
+  const userDetails = useAuthState()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!userDetails.user){
+      navigate("/")
+    }
+  }, [userDetails, navigate])
   return (
     <>
         <NavbarEventec/>
