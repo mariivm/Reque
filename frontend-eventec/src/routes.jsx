@@ -1,6 +1,8 @@
 import Root from './routes/root';
 import Principal from './routes/principal';
-//import Login from './routes/login';
+import Login from './routes/loginEstudiante';
+import RegistroAso from './routes/registroAso';
+import RegistroEstudiante from './routes/registroEstudiante';
 
 const routes = 
 [
@@ -11,10 +13,18 @@ const routes =
     {
       path: "/calendar",
       element: <Principal />
-    }
-    // {
-    //   path: "./routes/login",
-    //   element: <Login />,
-    // },
+    },
+    {
+      path: "/loginEstudiante",
+      element: <Login />,
+    },
+    {
+      path: "/registroAso",
+      element: <RegistroAso />,
+    },
+    {
+      path: "/registroEstudiante",
+      element: <RegistroEstudiante />,
+    },
 ]
 export default routes
