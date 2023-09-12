@@ -1,7 +1,7 @@
 import NavbarEventec from "../../components/Navbar"
 import EventCard from "../../components/EventCard"
 import { Container, Row, Col } from "react-bootstrap"
-import "./principal.module.css"
+import styles from "./principal.module.css"
 
 const Principal = () => {
   return (
@@ -10,8 +10,8 @@ const Principal = () => {
         <Container>
             <Row>
                 <Col>
-                    <h1>Eventos</h1>
-                    <EventCard nombre={"Noche Bailable"} fecha={"15 de Setiembre"} lugar={"Edificio D3"} personasInscritas={424} cupos={500} duracion={"2 horas"} />
+                    <h1 className={styles.h1}>Eventos</h1>
+                    <EventCard nombre={"Noche Bailable"} fecha={"15 de Setiembre"} lugar={"Edificio D3"} personasInscritas={24} cupos={500} duracion={"2 horas"} />
 
                 </Col>
             </Row>
