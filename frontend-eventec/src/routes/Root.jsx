@@ -3,13 +3,14 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Checkbox from '../assets/checkbox';
 import { Button } from 'react-bootstrap';
-import { Link, redirect } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useState } from 'react';
 import { loginAso, useAuthDispatch } from '../context';
 
 const Root = () => {
   const [correoAsociacion, setCorreoAsociacion] = useState("");
   const [contrasena, setContrasena] = useState("");
+  const navigate = useNavigate()
 
   const dispatch = useAuthDispatch();
 
@@ -17,9 +18,9 @@ const Root = () => {
     e.preventDefault();
     let payload = {correoAsociacion, contrasena}
     try {
-      let response = await loginAso(dispatch, payload) //loginUser action makes the request and handles all the neccessary state changes
+      let response = await loginAso(dispatch, payload)
       if (!response.user) return;
-      redirect('/calendar') //navigate to dashboard on success
+      navigate("/calendar")
     } catch (error) {
       console.log(error)
     }
