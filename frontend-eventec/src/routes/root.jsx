@@ -19,7 +19,7 @@ const root = () => {
         Ingresa a la plataforma como asociación
       </p>
 
-      <div class="cuadrado" style={{ margin: "auto", textAlign: "center", top: "80px" }}>
+      <div className="cuadrado" style={{ margin: "auto", textAlign: "center", top: "80px" }}>
         <Row>
           <Col xs={10} style={{ position: "relative", margin: "auto", top: "30px" }}>
             <Form.Control type="text" placeholder={"Correo de Asociación"} style={{ textAlign: "center" }}/>
