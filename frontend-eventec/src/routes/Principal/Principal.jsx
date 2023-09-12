@@ -15,7 +15,6 @@ const Principal = () => {
       navigate("/")
     }
   }, [userDetails, navigate])
-  
   return (
     <>
         <NavbarEventec/>

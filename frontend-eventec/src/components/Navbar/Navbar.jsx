@@ -1,6 +1,7 @@
 import { Container, Navbar, NavDropdown } from "react-bootstrap"
 import { Link } from "react-router-dom"
-import { logout, useAuthDispatch, useAuthState } from "../context";
+import { logout, useAuthDispatch, useAuthState } from "../../context";
+import styles from './Navbar.module.css'
 
 const NavbarEventec = () => {
     const dispatch = useAuthDispatch();
