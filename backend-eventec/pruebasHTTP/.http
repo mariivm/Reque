@@ -1,7 +1,16 @@
-POST http://localhost:5000/api/login/aso HTTP/1.1
+# POST http://localhost:5000/api/login/aso HTTP/1.1
+# content-type: application/json
+
+# {
+#     "correoAsociacion": "luinavarro@estudiantec.cr",
+#     "contrasena": "prueba"
+# }
+
+POST http://localhost:5000/api/register/aso HTTP/1.1
 content-type: application/json
 
 {
-    "correo": "luinavarro@estudiantec.cr",
-    "contrasena": "prueba"
+    "correoAsociacion": "luinavarro@estudiantec.cr",
+    "contrasena": "prueba",
+    "nombreAsociacion": "ASODEC"
 }

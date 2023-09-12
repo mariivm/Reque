@@ -1,17 +1,16 @@
-from db_functions.Connection import connection
+from db_functions.Connection import Connection
 
 def fetchUsuarioAso(correo, contrasena):
-    conn = connection()
+    conn = Connection().db
     cursor = conn.cursor()
     query = f"SELECT * FROM Usuarios"
     cursor.execute(query)
     datos = cursor.fetchval()
     cursor.close()
-    conn.close()
     return datos
 
 def SP_insertarAso(correo, nombre, contrasena):
-    conn = connection()
+    conn = Connection().db
     cursor = conn.cursor()
     query = """\
         SET NOCOUNT ON;
@@ -22,21 +21,19 @@ def SP_insertarAso(correo, nombre, contrasena):
     cursor.execute(query, (correo, nombre, contrasena))
     datos = cursor.fetchval()
     cursor.close()
-    conn.close()
     return datos
 
 def fetchUsuarioEstudiante(correo, contrasena):
-    conn = connection()
+    conn = Connection().db
     cursor = conn.cursor()
     query = f"SELECT * FROM Usuarios"
     cursor.execute(query)
     datos = cursor.fetchval()
     cursor.close()
-    conn.close()
     return datos
 
 def SP_insertarEstudiante(correo, nombre, contrasena, carnet):
-    conn = connection()
+    conn = Connection().db
     cursor = conn.cursor()
     query = """\
         SET NOCOUNT ON;
@@ -47,5 +44,4 @@ def SP_insertarEstudiante(correo, nombre, contrasena, carnet):
     cursor.execute(query, (correo, nombre, contrasena))
     datos = cursor.fetchval()
     cursor.close()
-    conn.close()
     return datos
