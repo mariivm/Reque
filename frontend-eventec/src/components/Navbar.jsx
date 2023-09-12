@@ -1,7 +1,21 @@
 import { Container, Navbar, NavDropdown } from "react-bootstrap"
 import { Link } from "react-router-dom"
+import { logout, useAuthDispatch, useAuthState } from "../context";
 
 const NavbarEventec = () => {
+    const dispatch = useAuthDispatch();
+    const userDetails = useAuthState();
+
+    const handleLogout = async (e) => {
+        e.preventDefault();
+        try {
+            await logout(dispatch)
+            
+        } catch (error) {
+            console.log(error)
+        }
+
+        }
   return (
     <>
         <Navbar expand="lg" style={{marginBottom: "40px"}}>
@@ -12,7 +26,7 @@ const NavbarEventec = () => {
                     </Link></Navbar.Text>
                 <NavDropdown title="Opciones" className="justify-content-end">
                     <NavDropdown.Divider/>
-                    <NavDropdown.ItemText><Link to="/" style={{color: "#ff1212"}}>Cerrar Sesion</Link></NavDropdown.ItemText>
+                    <NavDropdown.ItemText style={{color: "#ff1212"}} onClick={handleLogout}>Cerrar Sesion</NavDropdown.ItemText>
                 </NavDropdown>
             </Container>
         </Navbar>

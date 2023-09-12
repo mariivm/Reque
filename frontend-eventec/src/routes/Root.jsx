@@ -19,13 +19,13 @@ const Root = () => {
     let payload = {correoAsociacion, contrasena}
     try {
       let response = await loginAso(dispatch, payload)
-      if (!response.token) return;
+      if (!response.user) return;
       navigate("/calendar")
     } catch (error) {
       console.log(error)
     }
-
-  }
+    }
+    
   return (
     <div>
       <span style={{ left: "20px", top: "10px" }}>EVEN</span>

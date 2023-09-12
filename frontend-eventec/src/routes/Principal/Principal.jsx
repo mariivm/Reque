@@ -11,7 +11,7 @@ const Principal = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (!userDetails.token){
+    if (!userDetails.user){
       navigate("/")
     }
   }, [userDetails, navigate])
