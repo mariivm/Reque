@@ -5,7 +5,7 @@ import Checkbox from '../assets/checkbox';
 import { Button } from 'react-bootstrap';
 import { Link, redirect } from "react-router-dom"
 import { useState } from 'react';
-import { loginUser, useAuthDispatch } from '../context';
+import { loginAso, useAuthDispatch } from '../context';
 
 const Root = () => {
   const [correoAsociacion, setCorreoAsociacion] = useState("");
@@ -17,7 +17,7 @@ const Root = () => {
     e.preventDefault();
     let payload = {correoAsociacion, contrasena}
     try {
-      let response = await loginUser(dispatch, payload) //loginUser action makes the request and handles all the neccessary state changes
+      let response = await loginAso(dispatch, payload) //loginUser action makes the request and handles all the neccessary state changes
       if (!response.user) return;
       redirect('/calendar') //navigate to dashboard on success
     } catch (error) {
