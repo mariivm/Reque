@@ -1,15 +1,16 @@
-const ROOT_URL = 'http://localhost:5000/api/login/aso';
+const ROOT_URL = 'http://localhost:5000/api';
  
 export async function loginUser(dispatch, loginPayload) {
   const requestOptions = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    mode: "cors",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(loginPayload),
   };
  
   try {
     dispatch({ type: 'REQUEST_LOGIN' });
-    let response = await fetch(`${ROOT_URL}/login`, requestOptions);
+    let response = await fetch(`${ROOT_URL}/login/aso`, requestOptions);
     let data = await response.json();
  
     if (data.user) {

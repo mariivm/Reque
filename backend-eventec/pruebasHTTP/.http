@@ -1,0 +1,7 @@
+POST http://localhost:5000/api/login/aso HTTP/1.1
+content-type: application/json
+
+{
+    "correo": "luinavarro@estudiantec.cr",
+    "contrasena": "prueba"
+}
