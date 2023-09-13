@@ -3,6 +3,7 @@ import Principal from '../routes/Principal/Principal';
 import Login from '../routes/Acceso/LoginEstudiante';
 import RegistroAso from '../routes/Acceso/RegistroAso';
 import RegistroEstudiante from '../routes/Acceso/RegistroEstudiante';
+import FormEvento from '../routes/FormEvento/FormEvento';
 
 const routes = 
 [
@@ -31,5 +32,10 @@ const routes =
       element: <RegistroEstudiante />,
       isPrivate: false,
     },
+    {
+      path: "/crearEvento",
+      element: <FormEvento />,
+      isPrivate: true,
+    }
 ]
 export default routes

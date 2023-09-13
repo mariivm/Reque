@@ -32,16 +32,16 @@ def fetchUsuarioEstudiante(correo, contrasena):
     cursor.close()
     return datos
 
-def SP_insertarEstudiante(correo, nombre, contrasena, carnet):
+def SP_insertarEstudiante(correo, nombre, contrasena, carne):
     conn = Connection().db
     cursor = conn.cursor()
     query = """\
         SET NOCOUNT ON;
         DECLARE @RC int;
-        EXEC @RC = [my_database].[dbo].[my_sp] ?, ?, ?
+        EXEC @RC = [my_database].[dbo].[my_sp] ?, ?, ?, ?
         SELECT @RC AS rc;
     """
-    cursor.execute(query, (correo, nombre, contrasena))
+    cursor.execute(query, (correo, nombre, contrasena, carne))
     datos = cursor.fetchval()
     cursor.close()
     return datos

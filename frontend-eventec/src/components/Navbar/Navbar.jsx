@@ -12,11 +12,10 @@ const NavbarEventec = () => {
         try {
             await logout(dispatch)
             
-        } catch (error) {
-            console.log(error)
-        }
+        } catch (error) {console.log(error)}
+    }
 
-        }
+
   return (
     <>
         <Navbar expand="lg" style={{marginBottom: "40px"}}>
@@ -26,6 +25,8 @@ const NavbarEventec = () => {
                     <span style={{color: "#22AAA1"}}>TEC</span>
                     </Link></Navbar.Text>
                 <NavDropdown title="Opciones" className="justify-content-end">
+                    <NavDropdown.Item>Foro</NavDropdown.Item>
+                    {userDetails && <NavDropdown.Item><Link to="/crearEvento">Crear Evento</Link></NavDropdown.Item>}
                     <NavDropdown.Divider/>
                     <NavDropdown.ItemText className={styles.clickable} style={{color: "#ff1212"}} onClick={handleLogout}>Cerrar Sesion</NavDropdown.ItemText>
                 </NavDropdown>
