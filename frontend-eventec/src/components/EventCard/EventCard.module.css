@@ -6,9 +6,9 @@
     padding: 30px
 }
 
-.feature {
+.features {
     font-size: 22px;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-bottom: 15px;
 }
 
@@ -29,5 +29,17 @@
 }
 
 .descripcion {
-    margin-top: 12px;
+    margin-top: 20px;
+
+}
+
+.accordion{
+    border-radius: 20px;
+}
+
+.accordionBody{
+    background-color: #2F2F35;
+    border: 1px #FFF solid;
+    border-radius: 20px;
+    color: #fff;
 }

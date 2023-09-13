@@ -3,8 +3,12 @@ import Principal from '../routes/Principal/Principal';
 import Login from '../routes/Acceso/LoginEstudiante';
 import RegistroAso from '../routes/Acceso/RegistroAso';
 import RegistroEstudiante from '../routes/Acceso/RegistroEstudiante';
+import FormEvento from '../routes/FormEvento/FormEvento';
+import EventosInscritos from '../routes/EventosInscritos/EventosInscritos';
 import Feedback from '../routes/Feedback/Feedback';
 import Foro from '../routes/Foro/Foro';
+import FormActividad from '../routes/FormActividad/FormActividad';
+import FormPropuesta from '../routes/FormPropuesta/FormPropuesta';
 // import FormEvento from '../routes/FormEvento/FormEvento';
 
 const routes = 
@@ -35,19 +39,34 @@ const routes =
       isPrivate: false,
     },
     {
+      path: "/crearEvento",
+      element: <FormEvento />,
+      isPrivate: true,
+    },
+    {
+      path: "/eventosInscritos",
+      element: <EventosInscritos />,
+      isPrivate: true,
+    },
+    {
       path: "/feedback",
       element: <Feedback />,
-      isPrivate: false,
+      isPrivate: true,
     },
     {
       path: "/foro",
       element: <Foro />,
-      isPrivate: false,
+      isPrivate: true,
     },
-    // {
-    //   path: "/crearEvento",
-    //   element: <FormEvento />,
-    //   isPrivate: true,
-    // }
+    {
+      path: "/crearActividad",
+      element: <FormActividad />,
+      isPrivate: true,
+    },
+    {
+      path: "/crearPropuesta",
+      element: <FormPropuesta />,
+      isPrivate: true,
+    }
 ]
 export default routes
