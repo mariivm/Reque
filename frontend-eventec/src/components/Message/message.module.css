@@ -1,0 +1,28 @@
+.container {
+    margin-top: 80px;
+    width: 80vw;
+    height: 50px;
+    border: 1px white solid;
+    border-radius: 20px;
+    padding: 30px;
+    text-align: justify;
+}
+.col1 {
+    position: relative;
+    top: -30px;
+    width: 250px;
+    height: 60px;
+    border-right: 1px white solid;
+    text-align: left;
+}
+.col2 {
+    position: relative;
+    top: -25px;
+    text-align: left;
+    padding-bottom: 100px;
+}
+.h5 {
+    position: relative;
+    top: 14px;
+    padding-bottom: 100px;
+}
