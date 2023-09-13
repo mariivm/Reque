@@ -27,7 +27,7 @@ def loginAso():
     contrasena = authInfo['contrasena']
     usuario = Usuario.fetchUsuarioAso(correo, contrasena)
     
-    return jsonify({'statusCode': 200, 'user': "usuario", 'auth_token': "token.decode('UTF-8')",  'errors': []}) #temporal para logearse
+    return jsonify({'statusCode': 200, 'user': {'tipoUsuario': 1}, 'auth_token': "token.decode('UTF-8')",  'errors': []}) #temporal para logearse
     if (not usuario): 
         res = {'statusCode': 400, 'user': '', 'auth_token':'', 'errors': ['El usuario o la contraseña no son correctas']}
         res = jsonify(res)
