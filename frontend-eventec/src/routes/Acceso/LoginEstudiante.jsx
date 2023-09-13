@@ -62,7 +62,7 @@ const LoginEstudiante = () => {
         <br/>
 
         <span className={styles.span} style={{ color: "gray"}}>¿No tienes una cuenta?</span>
-      <span className={styles.span}> <Link to="/registroAso"> <u>Regístrate</u></Link> </span>
+      <span className={styles.span}> <Link to="/registroEstudiante"> <u>Regístrate</u></Link> </span>
       </div>
     </div>
   )
