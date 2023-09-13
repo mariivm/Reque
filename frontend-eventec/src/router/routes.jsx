@@ -7,6 +7,7 @@ import FormEvento from '../routes/FormEvento/FormEvento';
 import EventosInscritos from '../routes/EventosInscritos/EventosInscritos';
 import Feedback from '../routes/Feedback/Feedback';
 import Foro from '../routes/Foro/Foro';
+import FormActividad from '../routes/FormActividad/FormActividad';
 // import FormEvento from '../routes/FormEvento/FormEvento';
 
 const routes = 
@@ -49,12 +50,17 @@ const routes =
     {
       path: "/feedback",
       element: <Feedback />,
-      isPrivate: false,
+      isPrivate: true,
     },
     {
       path: "/foro",
       element: <Foro />,
-      isPrivate: false,
+      isPrivate: true,
     },
+    {
+      path: "/crearActividad",
+      element: <FormActividad />,
+      isPrivate: true,
+    }
 ]
 export default routes

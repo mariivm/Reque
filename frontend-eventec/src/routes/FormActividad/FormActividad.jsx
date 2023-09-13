@@ -1,6 +1,6 @@
 import NavbarEventec from "../../components/Navbar/Navbar"
 import { Container, Row, Col, Form, Button } from "react-bootstrap"
-import styles from './FormEvento.module.css'
+import styles from './FormActividad.module.css'
 import { useState, useEffect } from "react"
 import { crearActividad } from "../../acciones/eventos"
 import { useNavigate } from "react-router-dom"
@@ -10,11 +10,10 @@ const FormActividad = () => {
     const [eventos, setEventos] = useState([])
     const userDetails = useAuthState();
     const navigate = useNavigate();
-    const [nombre, setNombre] = useState("")
+    const [evento, setEvento] = useState("")
     const [descripcion, setDescripcion] = useState("")
-    const [fecha, setFecha] = useState("")
-    const [hora, setHora] = useState("")
-    const [duracionStr, setDuracion] = useState("")
+    const [horaInicio, setHoraInicio] = useState("")
+    const [horaFinal, setHoraFinal] = useState("")
     const [lugar, setLugar] = useState("")
     const [capacidadStr, setCapacidad] = useState("")
 
@@ -34,18 +33,16 @@ const FormActividad = () => {
 
     const handleCrearActividad = async (e) => {
         e.preventDefault();
-        let duracion = parseInt(duracionStr);
         let capacidad = parseInt(capacidadStr);
 
-        if (isNaN(duracion) | isNaN(capacidad)){
-            alert("Duracion y capacidad deben ser valores numericos");
+        if (isNaN(capacidad)){
+            alert("La capacidad debe ser un valor numerico");
             return;
         }
 
-        if (!nombre | !descripcion | !fecha | !hora | !duracionStr | !capacidadStr | !lugar) {alert("Todos los datos deben ser rellenados")}
-        let fechaHora = fecha + " " + hora;
+        if (!evento | !descripcion | !horaInicio | !horaFinal | !capacidadStr | !lugar) {alert("Todos los datos deben ser rellenados")}
         let payload = {
-            nombre, descripcion, fechaHora, duracion, capacidad, lugar, asociacionID: (userDetails.user.asociacionID)
+            evento, descripcion, horaInicio, horaFinal, capacidad, lugar, asociacionID: (userDetails.user.asociacionID)
         }
         try {
             let res = await crearActividad(payload);
@@ -62,42 +59,40 @@ const FormActividad = () => {
             <Row>
                 <Col>
                     <Form.Group className={styles.formGroup} controlId="Nombre">
-                        <Form.Label>Nombre</Form.Label>
-                        <Form.Control type="text" placeholder="Ingrese el nombre del evento" value={nombre} onChange={e => setNombre(e.target.value)} />
+                        <Form.Label>Seleccione el evento en el que se realizara la actividad</Form.Label>
+                        <Form.Select value={evento} onChange={e => setEvento(e.target.value)} aria-label="Seleccione la carrera">
+                            {eventos.map((eve, index) => (<option key={index}>{eve.nombre}</option>))}
+                        </Form.Select>
                     </Form.Group>
-                    <Form.Group className={styles.formGroup} controlId="descrpcion">
-                        <Form.Label>Descripcion</Form.Label>
-                        <Form.Control className={styles.textarea} type="text" placeholder="Ingrese la descripcion" value={descripcion} onChange={e => setDescripcion(e.target.value)} />
+                    <Form.Group className={styles.formGroup} controlId="timeInit">
+                        <Form.Label>Hora Inicio</Form.Label>
+                        <Form.Control type="time" value={horaInicio} onChange={e => setHoraInicio(e.target.value)} />
                     </Form.Group>
-                </Col>
-                <Col>
-                    <Form.Group className={styles.formGroup} controlId="date">
-                        <Form.Label>Fecha</Form.Label>
-                        <Form.Control type="date" value={fecha} onChange={e => setFecha(e.target.value)} />
-                    </Form.Group>
-                    <Form.Group className={styles.formGroup} controlId="time">
-                        <Form.Label>Hora</Form.Label>
-                        <Form.Control type="time" value={hora} onChange={e => setHora(e.target.value)} />
-                    </Form.Group>
-                    <Form.Group className={styles.formGroup} controlId="duracion">
-                        <Form.Label>Duracion</Form.Label>
-                        <Form.Control type="number" placeholder="Ingrese la duracion del evento en horas" value={duracionStr} onChange={e => setDuracion(e.target.value)} />
-                    </Form.Group>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <Form.Group className={styles.formGroup} controlId="lugar">
-                        <Form.Label>Lugar</Form.Label>
-                        <Form.Control type="text" placeholder="Ingrese el lugar del evento" value={lugar} onChange={e => setLugar(e.target.value)} />
-                    </Form.Group>
+                    
                     <Form.Group className={styles.formGroup} controlId="capacidad">
                         <Form.Label>Capacidad</Form.Label>
                         <Form.Control type="number" placeholder="Ingrese la capacidad de personas" value={capacidadStr} onChange={e => setCapacidad(e.target.value)} />
                     </Form.Group>
                 </Col>
+                <Col>
+                    <Form.Group className={styles.formGroup} controlId="descrpcion">
+                        <Form.Label>Nombre</Form.Label>
+                        <Form.Control className={styles.textarea} type="text" placeholder="Ingrese la actividad" value={descripcion} onChange={e => setDescripcion(e.target.value)} />
+                    </Form.Group>
+                    <Form.Group className={styles.formGroup} controlId="timeFinal">
+                        <Form.Label>Hora Final</Form.Label>
+                        <Form.Control type="time" value={horaFinal} onChange={e => setHoraFinal(e.target.value)} />
+                    </Form.Group>
+                    <Form.Group className={styles.formGroup} controlId="lugar">
+                        <Form.Label>Lugar</Form.Label>
+                        <Form.Control type="text" placeholder="Ingrese el lugar de la actividad" value={lugar} onChange={e => setLugar(e.target.value)} />
+                    </Form.Group>
+                </Col>
+            </Row>
+            <Row>
+
                 <Col className={styles.centerContent}>
-                    <Button className={styles.button} onClick={handleCrearActividad}>Crear Evento</Button>
+                    <Button className={styles.button} onClick={handleCrearActividad}>Programar Actividad</Button>
                 </Col>
             </Row>
         </Container>

@@ -1,0 +1,26 @@
+.button {
+    margin-top: 15px;
+    height: 60px;
+    width: 290px;
+    border-radius: 20px;
+    background-color: #22AAAC;
+    border: none;
+}
+
+.button:hover {
+    background-color: #22aaacc6;
+}
+
+.formGroup{
+    margin-bottom: 28px;
+}
+
+.centerContent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    margin-top: 105px;
+}
