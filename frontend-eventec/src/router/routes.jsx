@@ -17,7 +17,7 @@ const routes =
     {
       path: "/calendar",
       element: <Principal />,
-      isPrivate: true,
+      isPrivate: false,
     },
     {
       path: "/loginEstudiante",

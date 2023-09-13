@@ -1,7 +1,7 @@
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import Checkbox from '../../assets/checkbox';
+import Checkbox from '../../components/Checkbox/checkbox';
 import { Button } from 'react-bootstrap';
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
