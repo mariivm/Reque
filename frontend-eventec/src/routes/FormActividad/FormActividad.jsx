@@ -29,7 +29,7 @@ const FormActividad = () => {
             return;
           }
         setEventosEnPantalla(userDetails.user.asociacionid)
-    }, [])
+    }, [userDetails, navigate])
 
     const handleCrearActividad = async (e) => {
         e.preventDefault();
@@ -40,7 +40,7 @@ const FormActividad = () => {
             return;
         }
 
-        if (!evento | !descripcion | !horaInicio | !horaFinal | !capacidadStr | !lugar) {alert("Todos los datos deben ser rellenados")}
+        if (!evento | !descripcion | !horaInicio | !horaFinal | !capacidadStr | !lugar) {alert("Todos los datos deben ser rellenados"); return;}
         let payload = {
             evento, descripcion, horaInicio, horaFinal, capacidad, lugar, asociacionID: (userDetails.user.asociacionID)
         }

@@ -90,3 +90,22 @@ export async function crearActividad(payload) {
         return;
     }
 }
+
+export async function crearPropuesta(payload) {
+    const requestOptions = {
+        method: 'POST',
+        mode: "cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      };
+    
+
+    try {
+        let res = await fetch(`${ROOT_URL}/crearPropuesta`, requestOptions)
+        let data = await res.json()
+        return data
+    } catch (e) {
+        console.log(e)
+        return;
+    }
+}

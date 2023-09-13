@@ -1,17 +1,17 @@
 import { Container, Navbar, NavDropdown } from "react-bootstrap"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { logout, useAuthDispatch, useAuthState } from "../../context";
 import styles from './Navbar.module.css'
 
 const NavbarEventec = () => {
     const dispatch = useAuthDispatch();
     const userDetails = useAuthState();
-
+    const navigate = useNavigate();
     const handleLogout = async (e) => {
         e.preventDefault();
         try {
             await logout(dispatch)
-            
+            navigate("/")
         } catch (error) {console.log(error)}
     }
 
@@ -29,6 +29,7 @@ const NavbarEventec = () => {
                     <NavDropdown.Item><Link to={"/foro"}>Foro</Link></NavDropdown.Item>
                     {(userDetails.user && !userDetails.user.tipoUsuario) ? <NavDropdown.Item><Link to="/crearEvento">Crear Evento</Link></NavDropdown.Item> : null}
                     {(userDetails.user && !userDetails.user.tipoUsuario) ? <NavDropdown.Item><Link to="/crearActividad">Programar Actividad</Link></NavDropdown.Item> : null}
+                    {(userDetails.user && userDetails.user.tipoUsuario) ? <NavDropdown.Item><Link to="/crearPropuesta">Proponer Evento</Link></NavDropdown.Item> : null}
                     {(userDetails.user && userDetails.user.tipoUsuario) ? <NavDropdown.Item><Link to="/eventosInscritos">Ver Eventos Inscritos</Link></NavDropdown.Item> : null}
                     <NavDropdown.Divider/>
                     <NavDropdown.ItemText className={styles.clickable} style={{color: "#ff1212"}} onClick={handleLogout}>Cerrar Sesion</NavDropdown.ItemText>
