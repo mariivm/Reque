@@ -22,7 +22,7 @@ const EventCard = ({nombre, lugar, duracion, personasInscritas, cupos, fecha, de
             </Col>
         </Row>
         <Row>
-            <h4>Cronograma</h4>
+            {actividades ? <h4>Cronograma</h4>: null}
             <Accordion flush>
                 {actividades ? actividades.map((act, index) => (
                     <Accordion.Item key={index} eventKey={index}>
