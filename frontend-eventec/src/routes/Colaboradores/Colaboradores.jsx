@@ -3,29 +3,29 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Checkbox from '../../components/Checkbox/checkbox';
 import { Button } from 'react-bootstrap';
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from 'react';
-import { loginAso, useAuthDispatch } from '../../context';
-import styles from "./acceso.module.css";
+// import { Link, useNavigate } from "react-router-dom";
+// import { useState } from 'react';
+// import { loginAso, useAuthDispatch } from '../../context';
+// import styles from "./acceso.module.css";
 
 const Root = () => {
-  const [correoAsociacion, setCorreoAsociacion] = useState("");
-  const [contrasena, setContrasena] = useState("");
-  const navigate = useNavigate()
+//   const [correoAsociacion, setCorreoAsociacion] = useState("");
+//   const [contrasena, setContrasena] = useState("");
+//   const navigate = useNavigate()
 
-  const dispatch = useAuthDispatch();
+//   const dispatch = useAuthDispatch();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    let payload = {correoAsociacion, contrasena}
-    try {
-      let response = await loginAso(dispatch, payload)
-      if (!response.user) return;
-      navigate("/calendar")
-    } catch (error) {
-      console.log(error)
-    }
-  }
+//   const handleLogin = async (e) => {
+//     e.preventDefault();
+//     let payload = {correoAsociacion, contrasena}
+//     try {
+//       let response = await loginAso(dispatch, payload)
+//       if (!response.user) return;
+//       navigate("/calendar")
+//     } catch (error) {
+//       console.log(error)
+//     }
+//   }
     
   return (
     <div>

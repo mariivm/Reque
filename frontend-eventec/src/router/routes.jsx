@@ -4,6 +4,17 @@ import Login from '../routes/Acceso/LoginEstudiante';
 import RegistroAso from '../routes/Acceso/RegistroAso';
 import RegistroEstudiante from '../routes/Acceso/RegistroEstudiante';
 import FormEvento from '../routes/FormEvento/FormEvento';
+import EventosInscritos from '../routes/EventosInscritos/EventosInscritos';
+import Feedback from '../routes/Feedback/Feedback';
+import Foro from '../routes/Foro/Foro';
+import FormActividad from '../routes/FormActividad/FormActividad';
+import FormPropuesta from '../routes/FormPropuesta/FormPropuesta';
+<<<<<<< HEAD
+import Colaboradores from '../routes/Colaboradores/Colaboradores';
+=======
+import Propuestas from '../routes/Propuestas/Propuestas'
+// import FormEvento from '../routes/FormEvento/FormEvento';
+>>>>>>> a50b2daa60822d71700cd94133823a06dfd935d4
 
 const routes = 
 [
@@ -15,7 +26,7 @@ const routes =
     {
       path: "/calendar",
       element: <Principal />,
-      isPrivate: true,
+      isPrivate: false,
     },
     {
       path: "/loginEstudiante",
@@ -36,6 +47,42 @@ const routes =
       path: "/crearEvento",
       element: <FormEvento />,
       isPrivate: true,
+    },
+    {
+      path: "/eventosInscritos",
+      element: <EventosInscritos />,
+      isPrivate: true,
+    },
+    {
+      path: "/feedback",
+      element: <Feedback />,
+      isPrivate: true,
+    },
+    {
+      path: "/foro",
+      element: <Foro />,
+      isPrivate: true,
+    },
+    {
+      path: "/crearActividad",
+      element: <FormActividad />,
+      isPrivate: true,
+    },
+    {
+      path: "/crearPropuesta",
+      element: <FormPropuesta />,
+      isPrivate: true,
+    },
+    {
+<<<<<<< HEAD
+      path: "/colaboradores",
+      element: <Colaboradores />,
+      isPrivate: true,
+=======
+      path: "/verPropuestas",
+      element: <Propuestas />,
+      isPrivate: true
+>>>>>>> a50b2daa60822d71700cd94133823a06dfd935d4
     }
 ]
 export default routes

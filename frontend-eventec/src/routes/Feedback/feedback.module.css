@@ -1,0 +1,47 @@
+.h1 {
+position: relative;
+color: #FFFFFF;
+text-align:center;
+top: 40px;
+}
+.p {
+position: relative;
+text-align: center;
+color: #22AAA1;
+top: 50px;
+}
+.span {
+position: relative;
+color: #22AAA1;
+}
+.button {
+    background-color: #22AAA1;
+    width: 380px; 
+    height: 50px;
+}
+.select {
+    width: 300px;
+    height: 300px;
+    top: 70px;
+    left: 30px;
+    position: relative;
+}
+.input {
+    width: 1190px;
+    top: -125px;
+    left: 30px;
+    position: relative;
+}
+.button {
+    background-color: #22AAA1;
+    width: 100px; 
+    height: 40px;
+    top: -10px;
+    left: 550px;
+    position: relative;
+}
+.radio {
+    position: relative;
+    top: -150px;
+    left: 25px;
+}

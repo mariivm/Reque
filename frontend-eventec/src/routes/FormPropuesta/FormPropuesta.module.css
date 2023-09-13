@@ -1,0 +1,34 @@
+.textarea{
+    min-height: 145px;
+}
+
+.button {
+    margin-top: 15px;
+    height: 60px;
+    width: 290px;
+    border-radius: 20px;
+    background-color: #22AAAC;
+    border: none;
+}
+
+.button:hover {
+    background-color: #22aaacc6;
+}
+
+.formGroup{
+    margin-bottom: 18px;
+}
+
+.centerContent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.requisitos{
+    margin-top: 34px;
+}
+
+.container{
+    margin-top: 75px;
+}
