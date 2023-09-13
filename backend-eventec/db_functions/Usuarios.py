@@ -15,7 +15,7 @@ def SP_insertarAso(correo, nombre, contrasena):
     query = """\
         SET NOCOUNT ON;
         DECLARE @RC int;
-        EXEC @RC = [my_database].[dbo].[my_sp] ?, ?, ?
+        EXEC @RC = [dbo]. ?, ?, ?
         SELECT @RC AS rc;
     """
     cursor.execute(query, (correo, nombre, contrasena))
@@ -26,7 +26,12 @@ def SP_insertarAso(correo, nombre, contrasena):
 def fetchUsuarioEstudiante(correo, contrasena):
     conn = Connection().db
     cursor = conn.cursor()
-    query = f"SELECT * FROM Usuarios"
+    query = query = """\
+        SET NOCOUNT ON;
+        DECLARE @RC int;
+        EXEC @RC = [my_database].[dbo].[my_sp] ?, ?, ?, ?
+        SELECT @RC AS rc;
+    """
     cursor.execute(query)
     datos = cursor.fetchval()
     cursor.close()

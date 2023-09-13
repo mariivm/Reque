@@ -109,3 +109,20 @@ export async function crearPropuesta(payload) {
         return;
     }
 }
+
+export async function fetchPropuestas(asociacion) {
+    const requestOptions = {
+        method: 'POST',
+        mode: "cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({asociacion}),
+      };
+    try {
+        let res = await fetch(`${ROOT_URL}/propuestasAsociacion`, requestOptions)
+        let data = await res.json()
+        return data
+    } catch (e) {
+        console.log(e)
+        return;
+    }
+}

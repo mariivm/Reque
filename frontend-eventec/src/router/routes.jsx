@@ -9,6 +9,7 @@ import Feedback from '../routes/Feedback/Feedback';
 import Foro from '../routes/Foro/Foro';
 import FormActividad from '../routes/FormActividad/FormActividad';
 import FormPropuesta from '../routes/FormPropuesta/FormPropuesta';
+import Propuestas from '../routes/Propuestas/Propuestas'
 // import FormEvento from '../routes/FormEvento/FormEvento';
 
 const routes = 
@@ -67,6 +68,11 @@ const routes =
       path: "/crearPropuesta",
       element: <FormPropuesta />,
       isPrivate: true,
+    },
+    {
+      path: "/verPropuestas",
+      element: <Propuestas />,
+      isPrivate: true
     }
 ]
 export default routes
