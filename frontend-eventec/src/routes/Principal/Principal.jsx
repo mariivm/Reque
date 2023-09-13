@@ -22,8 +22,7 @@ const Principal = () => {
             <Row>
                 <Col>
                     <h1 className={styles.h1}>Eventos</h1>
-                    <EventCard nombre={"Noche Bailable"} fecha={"15 de Setiembre"} lugar={"Edificio D3"} personasInscritas={24} cupos={500} duracion={"2 horas"} />
-
+                    <EventCard nombre={"Noche Bailable"} fecha={"15 de Setiembre"} lugar={"Edificio D3"} personasInscritas={500} cupos={500} duracion={"2 horas"} esAsocia={false} estaInscrito={false} descripcion={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."}/>
                 </Col>
             </Row>
         </Container>

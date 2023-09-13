@@ -1,5 +1,7 @@
 import pyodbc
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 class Connection():
     def __new__(self):

@@ -4,9 +4,8 @@ import os
 import jwt
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
-import db_functions.Usuarios as Usuario
 load_dotenv()
-
+import db_functions.Usuarios as Usuario
 
 
 # App Config: os.environ son del archivo .env que no esta en git
@@ -26,7 +25,7 @@ def loginAso():
     authInfo = request.get_json()
     correo = authInfo['correoAsociacion']
     contrasena = authInfo['contrasena']
-    #usuario = Usuario.fetchUsuarioAso(correo, contrasena)
+    usuario = Usuario.fetchUsuarioAso(correo, contrasena)
     
     return jsonify({'statusCode': 200, 'user': "usuario", 'auth_token': "token.decode('UTF-8')",  'errors': []}) #temporal para logearse
     if (not usuario): 
@@ -51,13 +50,13 @@ def registerAso():
     nombre = asoInfo['nombreAsociacion']
     contrasena = asoInfo['contrasena']
 
-    #spRes = Usuario.SP_insertarAso(correo, nombre, contrasena)
+    spRes = Usuario.SP_insertarAso(correo, nombre, contrasena)
     if (spRes == 1):
         res = {'statusCode': 400, 'user': '', 'auth_token':'', 'errors': ['No se pudo crear el usuario']}
         res = jsonify(res)
         return res
     
-    #usuario = Usuario.fetchUsuarioAso(correo, contrasena)
+    usuario = Usuario.fetchUsuarioAso(correo, contrasena)
     token = jwt.encode({
         'public_id': usuario.usuarioid,
         'exp': datetime.utcnow() + timedelta(minutes=120)
@@ -73,9 +72,8 @@ def loginEstudiante():
     authInfo = request.get_json()
     correo = authInfo['correoEstudiante']
     contrasena = authInfo['contrasena']
-    #usuario = Usuario.fetchUsuarioEstudiante(correo, contrasena)
+    usuario = Usuario.fetchUsuarioEstudiante(correo, contrasena)
     
-    return jsonify({'statusCode': 200, 'user': "usuario", 'auth_token': "token.decode('UTF-8')",  'errors': []}) #temporal para logearse
     if (not usuario): 
         res = {'statusCode': 400, 'user': '', 'auth_token':'', 'errors': ['El usuario o la contraseña no son correctas']}
         res = jsonify(res)
@@ -99,13 +97,13 @@ def registerEstudiante():
     carne = estuInfo['carne']
     contrasena = estuInfo['contrasena']
 
-    #spRes = Usuario.SP_insertarEstudiante(correo, nombre, contrasena, carne)
+    spRes = Usuario.SP_insertarEstudiante(correo, nombre, contrasena, carne)
     if (spRes == 1):
         res = {'statusCode': 400, 'user': '', 'auth_token':'', 'errors': ['No se pudo crear el usuario']}
         res = jsonify(res)
         return res
     
-    #usuario = Usuario.fetchUsuarioEstudiante(correo, contrasena)
+    usuario = Usuario.fetchUsuarioEstudiante(correo, contrasena)
     token = jwt.encode({
         'public_id': usuario.usuarioid,
         'exp': datetime.utcnow() + timedelta(minutes=120)
@@ -113,6 +111,7 @@ def registerEstudiante():
 
     res = jsonify({'statusCode': 200, 'user': usuario, 'auth_token': token.decode('UTF-8'),  'errors': []})
     return res
+
 
 if __name__ == '__main__':
     app.run(debug=True)
