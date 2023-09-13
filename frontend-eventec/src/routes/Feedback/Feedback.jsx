@@ -1,4 +1,5 @@
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Row, Col } from 'react-bootstrap';
+import Radio from '../../components/Radio/Radio'
 import styles from "./feedback.module.css";
 
 const Feedback = () => {
@@ -34,6 +35,20 @@ const Feedback = () => {
           <Button className={styles.button} type="submit">Enviar</Button>
         </fieldset>
       </Form>
+      <Row className={styles.radio}>
+        <Col>
+          <Radio nombreCalificacion={"Calificación del lugar"}/>
+        </Col>
+        <Col>
+          <Radio nombreCalificacion={"Calificación del horario"}/>
+        </Col>
+        <Col>
+          <Radio nombreCalificacion={"Calificación de las actividades"}/>
+        </Col>
+        <Col>
+          <Radio nombreCalificacion={"Calificación de la organización"}/>
+        </Col>
+      </Row>
     </div>
   )
 }
