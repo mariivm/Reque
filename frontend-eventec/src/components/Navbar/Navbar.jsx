@@ -30,6 +30,7 @@ const NavbarEventec = () => {
                     {(userDetails.user && !userDetails.user.tipoUsuario) ? <NavDropdown.Item><Link to="/crearEvento">Crear Evento</Link></NavDropdown.Item> : null}
                     {(userDetails.user && !userDetails.user.tipoUsuario) ? <NavDropdown.Item><Link to="/crearActividad">Programar Actividad</Link></NavDropdown.Item> : null}
                     {(userDetails.user && userDetails.user.tipoUsuario) ? <NavDropdown.Item><Link to="/crearPropuesta">Proponer Evento</Link></NavDropdown.Item> : null}
+                    {(userDetails.user && userDetails.user.tipoUsuario) ? <NavDropdown.Item><Link to="/feedback">Dar Feedback de Evento</Link></NavDropdown.Item> : null}
                     {(userDetails.user && userDetails.user.tipoUsuario) ? <NavDropdown.Item><Link to="/eventosInscritos">Ver Eventos Inscritos</Link></NavDropdown.Item> : null}
                     <NavDropdown.Divider/>
                     <NavDropdown.ItemText className={styles.clickable} style={{color: "#ff1212"}} onClick={handleLogout}>Cerrar Sesion</NavDropdown.ItemText>
