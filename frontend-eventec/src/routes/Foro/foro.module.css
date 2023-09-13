@@ -1,0 +1,28 @@
+.h1 {
+position: relative;
+color: #FFFFFF;
+text-align:center;
+top: 40px;
+}
+.p {
+position: relative;
+text-align: center;
+color: #22AAA1;
+top: 50px;
+}
+.span {
+position: relative;
+color: #22AAA1;
+}
+.button {
+    background-color: #22AAA1;
+    width: 100px; 
+    height: 40px;
+    top: -80px;
+    left: 1120px;
+    position: relative;
+}
+.stack {
+    border-color: #FFFFFF;
+    border-width: 10px;
+}
