@@ -258,7 +258,7 @@ def insertEncuesta():
 
 @app.route('/api/select/Encuesta', methods=['POST', 'OPTIONS'])
 @cross_origin()
-def insertEncuesta():
+def selectEncuesta():
     encuesInfo = request.get_json()
     idEvento =  encuesInfo ['idEvento']
 
@@ -321,7 +321,7 @@ def selectAsocias():
 
 @app.route('/api/insert/propuestas', methods=['POST', 'OPTIONS'])
 @cross_origin()
-def selectAsocias():
+def insertPropuestas():
     propInfo = request.get_json()
     carnet =  propInfo['carnet']
     nombre =  propInfo['nombre ']
