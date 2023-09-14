@@ -93,8 +93,8 @@ def loginEstudiante():
 def registerEstudiante():
     estuInfo = request.get_json()
     correo = estuInfo['correoInstitucional']
-    nombre = estuInfo['nombreEstudiante']
-    carne = estuInfo['carne']
+    nombre = estuInfo['nombreCompleto']
+    carne = int(estuInfo['carnet'])
     contrasena = estuInfo['contrasena']
 
     spRes = Usuario.SP_insertarEstudiante(correo, nombre, contrasena, carne)

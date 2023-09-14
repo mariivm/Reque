@@ -19,9 +19,9 @@ const LoginEstudiante = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     let payload = {correoEstudiante, contrasena}
+    if (!correoEstudiante || !contrasena) {alert("Todos los datos deben ser rellenados"); return;}
+    if (!esCorreoEstudiantec(correoEstudiante)) {alert("Debe utilizar un correo estudiantil"); return;}
     try {
-      if (!correoEstudiante || !contrasena) {alert("Todos los datos deben ser rellenados"); return;}
-      if (!esCorreoEstudiantec(correoEstudiante)) {alert("Debe utilizar un correo estudiantil"); return;}
       let response = await loginEstudiante(dispatch, payload)
       if (response.statusCode != 200) {alert("Usuario o contrasena incorrecta!"); return;}
       if (!response.user) return;

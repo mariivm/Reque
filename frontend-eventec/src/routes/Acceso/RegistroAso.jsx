@@ -19,9 +19,10 @@ const RegistroAso = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     let payload = {nombreAsociacion, correoAsociacion, contrasena}
+    if (!correoAsociacion || !contrasena || !nombreAsociacion) {alert("Todos los datos deben ser rellenados"); return;}
+    if (!esCorreoEstudiantec(correoAsociacion)) {alert("Debe utilizar un correo estudiantil"); return;}
     try {
-      if (!correoAsociacion || !contrasena || !nombreAsociacion) {alert("Todos los datos deben ser rellenados"); return;}
-      if (!esCorreoEstudiantec(correoAsociacion)) {alert("Debe utilizar un correo estudiantil"); return;}
+      
 
 
       let response = await registerAso(dispatch, payload)

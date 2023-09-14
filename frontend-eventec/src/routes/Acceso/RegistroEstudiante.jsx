@@ -19,10 +19,12 @@ const RegistroEstudiante = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    let payload = {nombreCompleto, correoInstitucional, carnet, contrasena}
+
+    if (isNaN(parseInt(carnet))) {alert("El carne debe ser un numero"); return;}
+    if (!correoInstitucional || !contrasena || !nombreCompleto || !carnet) {alert("Todos los datos deben ser rellenados"); return;}
+    if (!esCorreoEstudiantec(correoInstitucional)) {alert("Debe utilizar un correo estudiantil"); return;}
+    let payload = {nombreCompleto, correoInstitucional, carnet: parseInt(carnet), contrasena}
     try {
-      if (!correoInstitucional || !contrasena || !nombreCompleto || !carnet) {alert("Todos los datos deben ser rellenados"); return;}
-      if (!esCorreoEstudiantec(correoInstitucional)) {alert("Debe utilizar un correo estudiantil"); return;}
 
 
       let response = await registerEstudiante(dispatch, payload)

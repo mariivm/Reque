@@ -19,10 +19,9 @@ const Root = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     let payload = {correoAsociacion, contrasena}
+    if (!correoAsociacion || !contrasena) {alert("Todos los datos deben ser rellenados"); return;}
+    if (!esCorreoEstudiantec(correoAsociacion)) {alert("Debe utilizar un correo estudiantil"); return;}
     try {
-      if (!correoAsociacion || !contrasena) {alert("Todos los datos deben ser rellenados"); return;}
-      if (!esCorreoEstudiantec(correoAsociacion)) {alert("Debe utilizar un correo estudiantil"); return;}
-
       let response = await loginAso(dispatch, payload)
       if (response.statusCode != 200) {alert("Usuario o contrasena incorrecta!"); return;}
       if (!response.user) return;
