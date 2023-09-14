@@ -1,0 +1,5 @@
+PyJWT
+flask
+flask_cors
+dotenv
+pyodbc

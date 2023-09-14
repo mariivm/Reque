@@ -79,7 +79,7 @@ const EstadisticaEvento = () => {
                 </Col>
             </Row>
             <Row className={`overflow-auto ${styles.cardContainer}`}>
-                {feedbacks.map((feedback, index) => (<FeedbackCard key={index} estudiante={feedback.carne} lugar={feedback.califLugar} horario={feedback.califHorario} actividades={feedback.califAct} organizacion={feedback.califOrg} comentario={feedback.comentario} />))}
+                {feedbacks.map((feedback, index) => (<FeedbackCard key={index} estudiante={feedback.nombre} lugar={feedback.califLugar} horario={feedback.califHorario} actividades={feedback.califAct} organizacion={feedback.califOrg} comentario={feedback.comentario} />))}
             </Row>
         </Container>
     </>
