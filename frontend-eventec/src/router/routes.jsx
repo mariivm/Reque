@@ -10,6 +10,7 @@ import Foro from '../routes/Foro/Foro';
 import FormActividad from '../routes/FormActividad/FormActividad';
 import FormPropuesta from '../routes/FormPropuesta/FormPropuesta';
 import Colaboradores from '../routes/Colaboradores/Colaboradores';
+import AgregarColaborador from '../routes/Colaboradores/AgregarColaborador';
 import Propuestas from '../routes/Propuestas/Propuestas'
 import EstadisticaEvento from '../routes/EstadisticasEvento/EstadisticaEvento';
 // import FormEvento from '../routes/FormEvento/FormEvento';
@@ -75,7 +76,13 @@ const routes =
       path: "/colaboradores",
       element: <Colaboradores />,
       isPrivate: true,
-    },{
+    },
+    {
+      path: "/agregarColabs",
+      element: <AgregarColaborador />,
+      isPrivate: false,
+    },
+    {
       path: "/verPropuestas",
       element: <Propuestas />,
       isPrivate: true

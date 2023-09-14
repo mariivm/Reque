@@ -23,11 +23,8 @@ def SP_insertarAso(correo, nombre, contrasena):
         EXEC @RC = [eventec].[dbo].[Reg_Aso] ?, ?, ?
         SELECT @RC AS rc;
     """
-    cursor.execute(query, (correo, nombre, contrasena))
-    columns = [column[0] for column in cursor.description]
-    datos = []
-    for row in cursor.fetchall():
-        datos.append(dict(zip(columns, row)))
+    cursor.execute(query, (nombre, correo, contrasena))
+    datos = cursor.fetchval()
     cursor.close()
     return datos
 
@@ -40,8 +37,7 @@ def fetchUsuarioEstudiante(correo, contrasena):
     cursor.execute(query,(correo,contrasena))
     columns = [column[0] for column in cursor.description]
     datos = []
-    for row in cursor.fetchall():
-        datos.append(dict(zip(columns, row)))
+    datos = cursor.fetchval()
     cursor.close()
     return datos
 
@@ -54,11 +50,8 @@ def SP_insertarEstudiante(correo, nombre, contrasena, carne):
         EXEC @RC = [eventec].[dbo].[Reg_Estu] ?, ?, ?, ?
         SELECT @RC AS rc;
     """
-    cursor.execute(query, (correo, nombre, contrasena, carne))
-    columns = [column[0] for column in cursor.description]
-    datos = []
-    for row in cursor.fetchall():
-        datos.append(dict(zip(columns, row)))
+    cursor.execute(query, (nombre, carne, correo, contrasena))
+    datos = cursor.fetchval()
     cursor.close()
     return datos
 

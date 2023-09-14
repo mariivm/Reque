@@ -2,13 +2,13 @@
 position: relative;
 color: #FFFFFF;
 text-align:center;
-top: 40px;
+top: 0px;
 }
 .p {
 position: relative;
 text-align: center;
 color: #22AAA1;
-top: 50px;
+top: 0px;
 }
 .span {
 position: relative;
@@ -17,18 +17,18 @@ color: #22AAA1;
 .button {
     background-color: #22AAA1;
     width: 380px; 
-    height: 50px;
+    height: -10px;
 }
 .select {
     width: 300px;
     height: 300px;
-    top: 70px;
+    top: 0px;
     left: 30px;
     position: relative;
 }
 .input {
     width: 1190px;
-    top: -125px;
+    top: -185px;
     left: 30px;
     position: relative;
 }

@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import { loginEstudiante, useAuthDispatch } from '../../context';
 import styles from "./acceso.module.css";
+import esCorreoEstudiantec from '../../util';
 
 const LoginEstudiante = () => {
   const [correoEstudiante, setCorreoEstudiante] = useState("");
@@ -18,8 +19,11 @@ const LoginEstudiante = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     let payload = {correoEstudiante, contrasena}
+    if (!correoEstudiante || !contrasena) {alert("Todos los datos deben ser rellenados"); return;}
+    if (!esCorreoEstudiantec(correoEstudiante)) {alert("Debe utilizar un correo estudiantil"); return;}
     try {
       let response = await loginEstudiante(dispatch, payload)
+      if (response.statusCode != 200) {alert("Usuario o contrasena incorrecta!"); return;}
       if (!response.user) return;
       navigate("/calendar")
     } catch (error) {

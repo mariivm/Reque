@@ -2,35 +2,30 @@
 position: relative;
 color: #FFFFFF;
 text-align:center;
-top: 0px;
+top: 40px;
 }
 .p {
 position: relative;
 text-align: center;
 color: #22AAA1;
-top: 20px;
+top: 50px;
 }
-
 .span {
 position: relative;
 color: #22AAA1;
 }
+.select {
+    width: 300px;
+    height: 300px;
+    top: 70px;
+    left: 30px;
+    position: relative;
+}
 .button {
     background-color: #22AAA1;
     width: 100px; 
-    height: 40px;
-    left: 1140px;
+    height: 35px;
+    top: -35px;
+    left: 320px;
     position: relative;
-}
-.col {
-    position: relative;
-    left: 20px;
-    width: 1100px;
-    bottom: -40px;
-}
-
-.stack{
-    height: 55vh;
-    overflow: auto;
-    scroll-behavior: smooth;
 }
