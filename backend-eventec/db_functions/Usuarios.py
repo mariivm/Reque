@@ -7,7 +7,10 @@ def fetchUsuarioAso(correo, contrasena):
         EXEC [eventec].[dbo].[Login_Aso] ?, ?
         """
     cursor.execute(query,(correo, contrasena))
-    datos = cursor.fetchval()
+    columns = [column[0] for column in cursor.description]
+    datos = []
+    for row in cursor.fetchall():
+        datos.append(dict(zip(columns, row)))
     cursor.close()
     return datos
 
@@ -21,7 +24,10 @@ def SP_insertarAso(correo, nombre, contrasena):
         SELECT @RC AS rc;
     """
     cursor.execute(query, (correo, nombre, contrasena))
-    datos = cursor.fetchval()
+    columns = [column[0] for column in cursor.description]
+    datos = []
+    for row in cursor.fetchall():
+        datos.append(dict(zip(columns, row)))
     cursor.close()
     return datos
 
@@ -32,7 +38,10 @@ def fetchUsuarioEstudiante(correo, contrasena):
         EXEC [eventec].[dbo].[Login_Estu] ?, ?
         """
     cursor.execute(query,(correo,contrasena))
-    datos = cursor.fetchval()
+    columns = [column[0] for column in cursor.description]
+    datos = []
+    for row in cursor.fetchall():
+        datos.append(dict(zip(columns, row)))
     cursor.close()
     return datos
 
@@ -46,7 +55,10 @@ def SP_insertarEstudiante(correo, nombre, contrasena, carne):
         SELECT @RC AS rc;
     """
     cursor.execute(query, (correo, nombre, contrasena, carne))
-    datos = cursor.fetchval()
+    columns = [column[0] for column in cursor.description]
+    datos = []
+    for row in cursor.fetchall():
+        datos.append(dict(zip(columns, row)))
     cursor.close()
     return datos
 
@@ -60,7 +72,10 @@ def SP_insertarColaborador(carnet, idEvento):
         SELECT @RC AS rc;
     """
     cursor.execute(query, (carnet, idEvento))
-    datos = cursor.fetchval()
+    columns = [column[0] for column in cursor.description]
+    datos = []
+    for row in cursor.fetchall():
+        datos.append(dict(zip(columns, row)))
     cursor.close()
     return datos
 
@@ -74,7 +89,10 @@ def SP_eliminarColaborador(carnet, idEvento):
         SELECT @RC AS rc;
     """
     cursor.execute(query, (carnet, idEvento))
-    datos = cursor.fetchval()
+    columns = [column[0] for column in cursor.description]
+    datos = []
+    for row in cursor.fetchall():
+        datos.append(dict(zip(columns, row)))
     cursor.close()
     return datos
 
@@ -85,7 +103,10 @@ def SP_selectAsocias():
         EXEC [eventec].[dbo].[Select_Asocias]
     """
     cursor.execute(query)
-    datos = cursor.fetchval()
+    columns = [column[0] for column in cursor.description]
+    datos = []
+    for row in cursor.fetchall():
+        datos.append(dict(zip(columns, row)))
     cursor.close()
     return datos
 

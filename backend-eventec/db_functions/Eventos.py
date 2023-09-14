@@ -10,7 +10,10 @@ def SP_insertarEvento(nombre,detalles,fecha,lugar,duracion,cupos,aso):
         SELECT @RC AS rc;
     """
     cursor.execute(query, (nombre,detalles,fecha,lugar,duracion,cupos,aso))
-    datos = cursor.fetchval()
+    columns = [column[0] for column in cursor.description]
+    datos = []
+    for row in cursor.fetchall():
+        datos.append(dict(zip(columns, row)))
     cursor.close()
     return datos
 
@@ -21,7 +24,10 @@ def SP_selectEventos(carnet):
         EXEC [eventec].[dbo].[selcEventos] ?
     """
     cursor.execute(query, (carnet))
-    datos = cursor.fetchval()
+    columns = [column[0] for column in cursor.description]
+    datos = []
+    for row in cursor.fetchall():
+        datos.append(dict(zip(columns, row)))
     cursor.close()
     return datos
 
@@ -32,7 +38,10 @@ def SP_selectEventosInscritos(carnet):
         EXEC [eventec].[dbo].[selEventosInscrpt] ?
     """
     cursor.execute(query, (carnet))
-    datos = cursor.fetchval()
+    columns = [column[0] for column in cursor.description]
+    datos = []
+    for row in cursor.fetchall():
+        datos.append(dict(zip(columns, row)))
     cursor.close()
     return datos
 
@@ -43,7 +52,10 @@ def SP_selectEventosPasados(carnet):
         EXEC [eventec].[dbo].[selEventosPas] ?
     """
     cursor.execute(query, (carnet))
-    datos = cursor.fetchval()
+    columns = [column[0] for column in cursor.description]
+    datos = []
+    for row in cursor.fetchall():
+        datos.append(dict(zip(columns, row)))
     cursor.close()
     return datos
 
@@ -57,7 +69,10 @@ def SP_insertarInscripcion(idEvento,carnet):
         SELECT @RC AS rc;
     """
     cursor.execute(query, (idEvento,carnet))
-    datos = cursor.fetchval()
+    columns = [column[0] for column in cursor.description]
+    datos = []
+    for row in cursor.fetchall():
+        datos.append(dict(zip(columns, row)))
     cursor.close()
     return datos
 
@@ -71,6 +86,9 @@ def SP_insertarPropuesta(carnet, nombre, detalles, fecha, lugar, duracion, capac
         SELECT @RC AS rc;
     """
     cursor.execute(query, (carnet, nombre, detalles, fecha, lugar, duracion, capacidad, nombreAsocia))
-    datos = cursor.fetchval()
+    columns = [column[0] for column in cursor.description]
+    datos = []
+    for row in cursor.fetchall():
+        datos.append(dict(zip(columns, row)))
     cursor.close()
     return datos

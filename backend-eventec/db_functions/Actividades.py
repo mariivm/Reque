@@ -10,7 +10,10 @@ def SP_insertarActividad(idEvento, horaInicial, horaFinal, ubicacion, nombre):
         SELECT @RC AS rc;
     """
     cursor.execute(query, (idEvento, horaInicial, horaFinal, ubicacion, nombre))
-    datos = cursor.fetchval()
+    columns = [column[0] for column in cursor.description]
+    datos = []
+    for row in cursor.fetchall():
+        datos.append(dict(zip(columns, row)))
     cursor.close()
     return datos
 
@@ -21,7 +24,10 @@ def SP_selectActividades(idEvento):
         EXEC [eventec].[dbo].[Select_Actividades] ?
     """
     cursor.execute(query, (idEvento))
-    datos = cursor.fetchval()
+    columns = [column[0] for column in cursor.description]
+    datos = []
+    for row in cursor.fetchall():
+        datos.append(dict(zip(columns, row)))
     cursor.close()
     return datos
 
