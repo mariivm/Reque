@@ -1,6 +1,7 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import styles from "./message.module.css"
 
+// eslint-disable-next-line react/prop-types
 const Message = ({NombreEstudiante, Comentario}) => {
   return (
     <Container className={styles.container}>

@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import { loginAso, useAuthDispatch } from '../../context';
 import styles from "./acceso.module.css";
+import esCorreoEstudiantec from '../../util';
 
 const Root = () => {
   const [correoAsociacion, setCorreoAsociacion] = useState("");
@@ -18,8 +19,11 @@ const Root = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     let payload = {correoAsociacion, contrasena}
+    if (!correoAsociacion || !contrasena) {alert("Todos los datos deben ser rellenados"); return;}
+    if (!esCorreoEstudiantec(correoAsociacion)) {alert("Debe utilizar un correo estudiantil"); return;}
     try {
       let response = await loginAso(dispatch, payload)
+      if (response.statusCode != 200) {alert("Usuario o contrasena incorrecta!"); return;}
       if (!response.user) return;
       navigate("/calendar")
     } catch (error) {

@@ -12,6 +12,7 @@ import FormPropuesta from '../routes/FormPropuesta/FormPropuesta';
 import Colaboradores from '../routes/Colaboradores/Colaboradores';
 import AgregarColaborador from '../routes/Colaboradores/AgregarColaborador';
 import Propuestas from '../routes/Propuestas/Propuestas'
+import EstadisticaEvento from '../routes/EstadisticasEvento/EstadisticaEvento';
 // import FormEvento from '../routes/FormEvento/FormEvento';
 
 const routes = 
@@ -86,5 +87,10 @@ const routes =
       element: <Propuestas />,
       isPrivate: true
     },
+    {
+      path: "/estadisticaEvento",
+      element: <EstadisticaEvento />,
+      isPrivate: true
+    }
 ]
 export default routes

@@ -10,7 +10,7 @@ export async function crearEvento(payload) {
     
 
     try {
-        let res = await fetch(`${ROOT_URL}/crearEvento`, requestOptions)
+        let res = await fetch(`${ROOT_URL}/insert/evento`, requestOptions)
         let data = await res.json()
         return data
     } catch (e) {
@@ -27,7 +27,7 @@ export async function fetchEventos(carne) {
         body: JSON.stringify({carne}),
       };
     try {
-        let res = await fetch(`${ROOT_URL}/seleccionarEventos`, requestOptions)
+        let res = await fetch(`${ROOT_URL}/selec/evento`, requestOptions)
         let data = await res.json()
         return data
     } catch (e) {
@@ -44,7 +44,7 @@ export async function fetchEventosInscritos(carne) {
         body: JSON.stringify({carne}),
       };
     try {
-        let res = await fetch(`${ROOT_URL}/seleccionarEventosInscritos`, requestOptions)
+        let res = await fetch(`${ROOT_URL}/selec/eventoinscrito`, requestOptions)
         let data = await res.json()
         return data
     } catch (e) {
@@ -119,6 +119,23 @@ export async function fetchPropuestas(asociacion) {
       };
     try {
         let res = await fetch(`${ROOT_URL}/propuestasAsociacion`, requestOptions)
+        let data = await res.json()
+        return data
+    } catch (e) {
+        console.log(e)
+        return;
+    }
+}
+
+export async function fetchEventosPasados(asociacion) {
+    const requestOptions = {
+        method: 'POST',
+        mode: "cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({asociacion}),
+      };
+    try {
+        let res = await fetch(`${ROOT_URL}/select/eventopasado`, requestOptions)
         let data = await res.json()
         return data
     } catch (e) {

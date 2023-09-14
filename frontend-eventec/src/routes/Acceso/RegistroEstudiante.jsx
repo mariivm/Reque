@@ -2,10 +2,11 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import { Button } from 'react-bootstrap';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import { registerEstudiante, useAuthDispatch } from '../../context';
 import styles from "./acceso.module.css"
+import esCorreoEstudiantec from '../../util';
 
 const RegistroEstudiante = () => {
   const [nombreCompleto, setNombreCompleto] = useState("");
@@ -18,11 +19,18 @@ const RegistroEstudiante = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    let payload = {nombreCompleto, correoInstitucional, carnet, contrasena}
+
+    if (isNaN(parseInt(carnet))) {alert("El carne debe ser un numero"); return;}
+    if (!correoInstitucional || !contrasena || !nombreCompleto || !carnet) {alert("Todos los datos deben ser rellenados"); return;}
+    if (!esCorreoEstudiantec(correoInstitucional)) {alert("Debe utilizar un correo estudiantil"); return;}
+    let payload = {nombreCompleto, correoInstitucional, carnet: parseInt(carnet), contrasena}
     try {
+
+
       let response = await registerEstudiante(dispatch, payload)
+      if (response.statusCode != 200) {alert("Usuario o contrasena incorrecta!"); return;}
       if (!response.user) return;
-      navigate("/")
+      navigate("/calendar")
     } catch (error) {
       console.log(error)
     }

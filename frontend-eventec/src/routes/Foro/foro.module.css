@@ -2,14 +2,15 @@
 position: relative;
 color: #FFFFFF;
 text-align:center;
-top: 40px;
+top: 0px;
 }
 .p {
 position: relative;
 text-align: center;
 color: #22AAA1;
-top: 50px;
+top: 20px;
 }
+
 .span {
 position: relative;
 color: #22AAA1;
@@ -26,4 +27,10 @@ color: #22AAA1;
     left: 20px;
     width: 1100px;
     bottom: -40px;
+}
+
+.stack{
+    height: 55vh;
+    overflow: auto;
+    scroll-behavior: smooth;
 }

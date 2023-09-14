@@ -1,13 +1,13 @@
 import { Button, Form, Col, Row, Stack } from 'react-bootstrap';
 import Message from '../../components/Message/Message'
+import NavbarEventec from '../../components/Navbar/Navbar';
 import styles from "./foro.module.css";
 
 const Foro = () => {    
   return (
     <>
+        <NavbarEventec />
         <div>
-            <span className={styles.span} style={{ color: "#FFFFFF", left: "20px", top: "10px" }}>EVEN</span>
-            <span className={styles.span} style={{ left: "20px", top: "10px" }}>TEC</span>
 
             <h1 className={styles.h1}>
                 Foro
@@ -17,7 +17,15 @@ const Foro = () => {
                 Espacio libre para hacer comentarios <br/> públicos sobre nuestros eventos
             </p>
 
-            <Stack gap={0}>
+            <Stack className={styles.stack} gap={0}>
+                <Message NombreEstudiante={"Armando"} Comentario={"Me gustó mucho"}/>
+                <Message NombreEstudiante={"Armando"} Comentario={"Me gustó mucho"}/>
+                <Message NombreEstudiante={"Armando"} Comentario={"Me gustó mucho"}/>
+                <Message NombreEstudiante={"Armando"} Comentario={"Me gustó mucho"}/>
+                <Message NombreEstudiante={"Armando"} Comentario={"Me gustó mucho"}/>
+                <Message NombreEstudiante={"Armando"} Comentario={"Me gustó mucho"}/>
+                <Message NombreEstudiante={"Armando"} Comentario={"Me gustó mucho"}/>
+                <Message NombreEstudiante={"Armando"} Comentario={"Me gustó mucho"}/>
                 <Message NombreEstudiante={"Armando"} Comentario={"Me gustó mucho"}/>
                 <Message NombreEstudiante={"Armando"} Comentario={"Me gustó mucho"}/>
                 <Message NombreEstudiante={"Armando"} Comentario={"Me gustó mucho"}/>

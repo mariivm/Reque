@@ -1,0 +1,8 @@
+.selectorCarrera{
+    margin-bottom: 35px;
+}
+
+.cardContainer{
+    height: 55vh;
+    scroll-behavior: auto;
+}
