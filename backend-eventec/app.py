@@ -73,8 +73,8 @@ def loginEstudiante():
     correo = authInfo['correoEstudiante']
     contrasena = authInfo['contrasena']
     usuario = Usuario.fetchUsuarioEstudiante(correo, contrasena)
-    
-    if (not usuario): 
+
+    if (not usuario):
         res = {'statusCode': 400, 'user': '', 'auth_token':'', 'errors': ['El usuario o la contraseña no son correctas']}
         res = jsonify(res)
         return res
@@ -146,7 +146,7 @@ def selectEventos():
         res = jsonify(res)
         return res
 
-    res = jsonify({'statusCode': 200})
+    res = jsonify({'statusCode': 200, 'res': spRes})
     return res
 
 @app.route('/api/select/eventoinscrito', methods=['POST', 'OPTIONS'])
@@ -162,7 +162,7 @@ def selectEventosInscritos():
         res = jsonify(res)
         return res
 
-    res = jsonify({'statusCode': 200})
+    res = jsonify({'statusCode': 200, 'res': spRes})
     return res
 
 @app.route('/api/select/eventopasado', methods=['POST', 'OPTIONS'])
@@ -178,7 +178,7 @@ def selectEventosPasados():
         res = jsonify(res)
         return res
 
-    res = jsonify({'statusCode': 200})
+    res = jsonify({'statusCode': 200, 'res': spRes})
     return res
 
 @app.route('/api/insert/inscripcion', methods=['POST', 'OPTIONS'])
@@ -231,7 +231,7 @@ def selectActividades():
         res = jsonify(res)
         return res
 
-    res = jsonify({'statusCode': 200})
+    res = jsonify({'statusCode': 200, 'res': spRes})
     return res
 
 @app.route('/api/insert/Encuesta', methods=['POST', 'OPTIONS'])
@@ -316,7 +316,7 @@ def selectAsocias():
         res = jsonify(res)
         return res
 
-    res = jsonify({'statusCode': 200})
+    res = jsonify({'statusCode': 200, 'res': spRes})
     return res
 
 @app.route('/api/insert/propuestas', methods=['POST', 'OPTIONS'])
@@ -339,10 +339,8 @@ def insertPropuestas():
         res = jsonify(res)
         return res
 
-    res = jsonify({'statusCode': 200})
+    res = jsonify({'statusCode': 200, 'res': spRes})
     return res
-
-
 
 if __name__ == '__main__':
     app.run(debug=True)
