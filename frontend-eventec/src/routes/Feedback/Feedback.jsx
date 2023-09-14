@@ -1,13 +1,13 @@
-import { Button, Form, Row, Col } from 'react-bootstrap';
+import { Button, Form, Row, Col, Navbar } from 'react-bootstrap';
 import Radio from '../../components/Radio/Radio'
 import styles from "./feedback.module.css";
+import NavbarEventec from '../../components/Navbar/Navbar';
 
 const Feedback = () => {
   return (
+    <>
+    <NavbarEventec />
     <div>
-      <span className={styles.span} style={{ color: "#FFFFFF", left: "20px", top: "10px" }}>EVEN</span>
-      <span className={styles.span} style={{ left: "20px", top: "10px" }}>TEC</span>
-
       <h1 className={styles.h1}>
         Enviar Feedback
       </h1>
@@ -50,6 +50,7 @@ const Feedback = () => {
         </Col>
       </Row>
     </div>
+    </>
   )
 }
 
