@@ -32,6 +32,8 @@ def fetchUsuarioEstudiante(correo, contrasena):
         EXEC [eventec].[dbo].[Login_Estu] ?, ?
         """
     cursor.execute(query,(correo,contrasena))
+    columns = [column[0] for column in cursor.description]
+    datos = []
     datos = cursor.fetchval()
     cursor.close()
     return datos

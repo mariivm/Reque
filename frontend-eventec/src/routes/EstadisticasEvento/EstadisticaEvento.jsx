@@ -5,6 +5,7 @@ import { useAuthState } from '../../context';
 import { useNavigate } from 'react-router-dom';
 import styles from './EstadisticaEvento.module.css'
 import FeedbackCard from '../../components/FeedbackCard/FeedbackCard';
+import  { fetchEventosPasados } from '../../acciones/eventos'
 
 const EstadisticaEvento = () => {
     const [eventos, setEventos] = useState([])
@@ -18,14 +19,12 @@ const EstadisticaEvento = () => {
     const navigate = useNavigate();
 
     const setEventosEnPantalla = async (asociacion) => {
-        // let data = await fetchEventosPasados(userDetails.user.carne);
-        let data = []
+        let data = await fetchEventosPasados(userDetails.user.asociacion);
         setEventos(data);
     }
 
     const setFeedbackEnPantalla = async(evento) => {
-        // let data = await fetchEventosPasados(userDetails.user.carne);
-        let data = {feedbacks: []}
+        let data = await fetchEventosPasados(userDetails.user.asociacion);
         setFeedbacks(data.feedbacks)
     }
 

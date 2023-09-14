@@ -34,11 +34,11 @@ def loginAso():
         res = {'statusCode': 400, 'user': '', 'auth_token':'', 'errors': ['El usuario o la contraseña no son correctas']}
         res = jsonify(res)
         return res
-
+    
     token = jwt.encode({
         'public_id': usuario.usuarioid,
         'exp': datetime.utcnow() + timedelta(minutes=120)
-    }, app.config['APP_SECRET'])
+    }, app.secret_key)
 
     res = jsonify({'statusCode': 200, 'user': usuario, 'auth_token': token.decode('UTF-8'),  'errors': []})
     return res
@@ -61,7 +61,7 @@ def registerAso():
     token = jwt.encode({
         'public_id': usuario.usuarioid,
         'exp': datetime.utcnow() + timedelta(minutes=120)
-    }, app.config['APP_SECRET'])
+    }, app.secret_key)
 
     res = jsonify({'statusCode': 200, 'user': usuario, 'auth_token': token.decode('UTF-8'),  'errors': []})
     return res
@@ -82,7 +82,7 @@ def loginEstudiante():
     token = jwt.encode({
         'public_id': usuario.usuarioid,
         'exp': datetime.utcnow() + timedelta(minutes=120)
-    }, app.config['APP_SECRET'])
+    }, app.secret_key)
 
     res = jsonify({'statusCode': 200, 'user': usuario, 'auth_token': token.decode('UTF-8'),  'errors': []})
     return res
@@ -104,12 +104,13 @@ def registerEstudiante():
         return res
 
     usuario = Usuario.fetchUsuarioEstudiante(correo, contrasena)
+    print(usuario)
     token = jwt.encode({
-        'public_id': usuario.usuarioid,
+        'public_id': usuario[1],
         'exp': datetime.utcnow() + timedelta(minutes=120)
-    }, app.config['APP_SECRET'])
+    }, app.secret_key)
 
-    res = jsonify({'statusCode': 200, 'user': usuario, 'auth_token': token.decode('UTF-8'),  'errors': []})
+    res = jsonify({'statusCode': 200, 'user': usuario, 'auth_token': token,  'errors': []})
     return res
 
 @app.route('/api/insert/evento', methods=['POST', 'OPTIONS'])
