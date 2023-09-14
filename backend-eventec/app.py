@@ -36,8 +36,9 @@ def loginAso():
         res = jsonify(res)
         return res
     
+    usuario = usuario[0]
     token = jwt.encode({
-        'public_id': usuario.usuarioid,
+        'public_id': usuario['usuarioid'],
         'exp': datetime.utcnow() + timedelta(minutes=120)
     }, app.secret_key)
 
@@ -58,9 +59,9 @@ def registerAso():
         res = jsonify(res)
         return res
 
-    usuario = Usuario.fetchUsuarioAso(correo, contrasena)
+    usuario = Usuario.fetchUsuarioAso(correo, contrasena)[0]
     token = jwt.encode({
-        'public_id': usuario.usuarioid,
+        'public_id': usuario['usuarioid'],
         'exp': datetime.utcnow() + timedelta(minutes=120)
     }, app.secret_key)
 
@@ -79,13 +80,14 @@ def loginEstudiante():
         res = {'statusCode': 400, 'user': '', 'auth_token':'', 'errors': ['El usuario o la contraseña no son correctas']}
         res = jsonify(res)
         return res
-
+    
+    usuario = usuario[0]
     token = jwt.encode({
-        'public_id': usuario.usuarioid,
+        'public_id': usuario['usuarioid'],
         'exp': datetime.utcnow() + timedelta(minutes=120)
     }, app.secret_key)
 
-    res = jsonify({'statusCode': 200, 'user': usuario, 'auth_token': token.decode('UTF-8'),  'errors': []})
+    res = jsonify({'statusCode': 200, 'user': usuario, 'auth_token': token,  'errors': []})
     return res
 
 
@@ -104,10 +106,9 @@ def registerEstudiante():
         res = jsonify(res)
         return res
 
-    usuario = Usuario.fetchUsuarioEstudiante(correo, contrasena)
-    print(usuario)
+    usuario = Usuario.fetchUsuarioEstudiante(correo, contrasena)[0]
     token = jwt.encode({
-        'public_id': usuario[1],
+        'public_id': usuario['usuarioid'],
         'exp': datetime.utcnow() + timedelta(minutes=120)
     }, app.secret_key)
 
@@ -139,11 +140,12 @@ def insertEvento():
 @cross_origin()
 def selectEventos():
     estuInfo = request.get_json()
+    print(estuInfo)
     carnet = estuInfo['carnet']
 
     spRes = Evento.SP_selectEventos(carnet)
 
-    if (spRes == 1):
+    if (not spRes):
         res = {'statusCode': 400, 'user': '', 'auth_token':'', 'errors': ['No se pudo consultar eventos']}
         res = jsonify(res)
         return res

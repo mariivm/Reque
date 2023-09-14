@@ -1,7 +1,7 @@
 from db_functions.Connection import Connection
 
 def SP_insertarEncuesta(idevento, carnet, calLugar, calHorario, calAct, calORrg, comene):
-    conn = Connection().db
+    conn = Connection().db()
     cursor = conn.cursor()
     query = """\
         SET NOCOUNT ON;
@@ -15,10 +15,11 @@ def SP_insertarEncuesta(idevento, carnet, calLugar, calHorario, calAct, calORrg,
     for row in cursor.fetchall():
         datos.append(dict(zip(columns, row)))
     cursor.close()
+    conn.close()
     return datos
 
 def SP_selectEncuestas(idevento):
-    conn = Connection().db
+    conn = Connection().db()
     cursor = conn.cursor()
     query = """\
         EXEC [eventec].[dbo].[Select_Encuestas] ?
@@ -29,4 +30,5 @@ def SP_selectEncuestas(idevento):
     for row in cursor.fetchall():
         datos.append(dict(zip(columns, row)))
     cursor.close()
+    conn.close()
     return datos

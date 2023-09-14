@@ -1,7 +1,7 @@
 from db_functions.Connection import Connection
 
 def SP_insertarEvento(nombre,detalles,fecha,lugar,duracion,cupos,aso):
-    conn = Connection().db
+    conn = Connection().db()
     cursor = conn.cursor()
     query = """\
         SET NOCOUNT ON;
@@ -15,10 +15,11 @@ def SP_insertarEvento(nombre,detalles,fecha,lugar,duracion,cupos,aso):
     for row in cursor.fetchall():
         datos.append(dict(zip(columns, row)))
     cursor.close()
+    conn.close()
     return datos
 
 def SP_selectEventos(carnet):
-    conn = Connection().db
+    conn = Connection().db()
     cursor = conn.cursor()
     query = """\
         EXEC [eventec].[dbo].[selcEventos] ?
@@ -32,7 +33,7 @@ def SP_selectEventos(carnet):
     return datos
 
 def SP_selectEventosInscritos(carnet):
-    conn = Connection().db
+    conn = Connection().db()
     cursor = conn.cursor()
     query = """\
         EXEC [eventec].[dbo].[selEventosInscrpt] ?
@@ -43,10 +44,11 @@ def SP_selectEventosInscritos(carnet):
     for row in cursor.fetchall():
         datos.append(dict(zip(columns, row)))
     cursor.close()
+    conn.close()
     return datos
 
 def SP_selectEventosPasados(carnet):
-    conn = Connection().db
+    conn = Connection().db()
     cursor = conn.cursor()
     query = """\
         EXEC [eventec].[dbo].[selEventosPas] ?
@@ -57,10 +59,11 @@ def SP_selectEventosPasados(carnet):
     for row in cursor.fetchall():
         datos.append(dict(zip(columns, row)))
     cursor.close()
+    conn.close()
     return datos
 
 def SP_insertarInscripcion(idEvento,carnet):
-    conn = Connection().db
+    conn = Connection().db()
     cursor = conn.cursor()
     query = """\
         SET NOCOUNT ON;
@@ -74,10 +77,11 @@ def SP_insertarInscripcion(idEvento,carnet):
     for row in cursor.fetchall():
         datos.append(dict(zip(columns, row)))
     cursor.close()
+    conn.close()
     return datos
 
 def SP_insertarPropuesta(carnet, nombre, detalles, fecha, lugar, duracion, capacidad, nombreAsocia):
-    conn = Connection().db
+    conn = Connection().db()
     cursor = conn.cursor()
     query = """\
         SET NOCOUNT ON;
@@ -91,4 +95,5 @@ def SP_insertarPropuesta(carnet, nombre, detalles, fecha, lugar, duracion, capac
     for row in cursor.fetchall():
         datos.append(dict(zip(columns, row)))
     cursor.close()
+    conn.close()
     return datos

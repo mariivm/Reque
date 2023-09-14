@@ -1,7 +1,7 @@
 from db_functions.Connection import Connection
 
 def fetchUsuarioAso(correo, contrasena):
-    conn = Connection().db
+    conn = Connection().db()
     cursor = conn.cursor()
     query = """\
         EXEC [eventec].[dbo].[Login_Aso] ?, ?
@@ -12,10 +12,11 @@ def fetchUsuarioAso(correo, contrasena):
     for row in cursor.fetchall():
         datos.append(dict(zip(columns, row)))
     cursor.close()
+    conn.close()
     return datos
 
 def SP_insertarAso(correo, nombre, contrasena):
-    conn = Connection().db
+    conn = Connection().db()
     cursor = conn.cursor()
     query = """\
         SET NOCOUNT ON;
@@ -26,10 +27,12 @@ def SP_insertarAso(correo, nombre, contrasena):
     cursor.execute(query, (nombre, correo, contrasena))
     datos = cursor.fetchval()
     cursor.close()
+    conn.close()
+
     return datos
 
 def fetchUsuarioEstudiante(correo, contrasena):
-    conn = Connection().db
+    conn = Connection().db()
     cursor = conn.cursor()
     query = """\
         EXEC [eventec].[dbo].[Login_Estu] ?, ?
@@ -37,12 +40,14 @@ def fetchUsuarioEstudiante(correo, contrasena):
     cursor.execute(query,(correo,contrasena))
     columns = [column[0] for column in cursor.description]
     datos = []
-    datos = cursor.fetchval()
+    for row in cursor.fetchall():
+        datos.append(dict(zip(columns, row)))
     cursor.close()
-    return datos
+    conn.close()
 
+    return datos
 def SP_insertarEstudiante(correo, nombre, contrasena, carne):
-    conn = Connection().db
+    conn = Connection().db()
     cursor = conn.cursor()
     query = """\
         SET NOCOUNT ON;
@@ -53,10 +58,12 @@ def SP_insertarEstudiante(correo, nombre, contrasena, carne):
     cursor.execute(query, (nombre, carne, correo, contrasena))
     datos = cursor.fetchval()
     cursor.close()
+    conn.close()
+
     return datos
 
 def SP_insertarColaborador(carnet, idEvento):
-    conn = Connection().db
+    conn = Connection().db()
     cursor = conn.cursor()
     query = """\
         SET NOCOUNT ON;
@@ -70,10 +77,12 @@ def SP_insertarColaborador(carnet, idEvento):
     for row in cursor.fetchall():
         datos.append(dict(zip(columns, row)))
     cursor.close()
+    conn.close()
+
     return datos
 
 def SP_eliminarColaborador(carnet, idEvento):
-    conn = Connection().db
+    conn = Connection().db()
     cursor = conn.cursor()
     query = """\
         SET NOCOUNT ON;
@@ -87,10 +96,12 @@ def SP_eliminarColaborador(carnet, idEvento):
     for row in cursor.fetchall():
         datos.append(dict(zip(columns, row)))
     cursor.close()
+    conn.close()
+
     return datos
 
 def SP_selectAsocias():
-    conn = Connection().db
+    conn = Connection().db()
     cursor = conn.cursor()
     query = """\
         EXEC [eventec].[dbo].[Select_Asocias]
@@ -101,5 +112,7 @@ def SP_selectAsocias():
     for row in cursor.fetchall():
         datos.append(dict(zip(columns, row)))
     cursor.close()
+    conn.close()
+
     return datos
 

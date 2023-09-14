@@ -46,7 +46,8 @@ export async function loginEstudiante(dispatch, loginPayload) {
     }
  
     dispatch({ type: 'LOGIN_ERROR', error: data.errors[0] });
-    return;
+    console.log(data.errors[0])
+    return data;
   } catch (error) {
     dispatch({ type: 'LOGIN_ERROR', error: error });
   }

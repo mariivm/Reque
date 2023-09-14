@@ -19,16 +19,16 @@ export async function crearEvento(payload) {
     }
 }
 
-export async function fetchEventos(carne) {
+export async function fetchEventos(carnet) {
     const requestOptions = {
         method: 'POST',
         mode: "cors",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({carne}),
+        body: JSON.stringify({carnet}),
       };
     try {
-        let res = await fetch(`${ROOT_URL}/selec/evento`, requestOptions)
-        let data = await res.json()
+        let res = await fetch(`${ROOT_URL}/select/evento`, requestOptions)
+        let data = (await res.json())
         return data
     } catch (e) {
         console.log(e)

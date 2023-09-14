@@ -1,7 +1,7 @@
 from db_functions.Connection import Connection
 
 def SP_insertarActividad(idEvento, horaInicial, horaFinal, ubicacion, nombre):
-    conn = Connection().db
+    conn = Connection().db()
     cursor = conn.cursor()
     query = """\
         SET NOCOUNT ON;
@@ -15,10 +15,11 @@ def SP_insertarActividad(idEvento, horaInicial, horaFinal, ubicacion, nombre):
     for row in cursor.fetchall():
         datos.append(dict(zip(columns, row)))
     cursor.close()
+    conn.close()
     return datos
 
 def SP_selectActividades(idEvento):
-    conn = Connection().db
+    conn = Connection().db()
     cursor = conn.cursor()
     query = """\
         EXEC [eventec].[dbo].[Select_Actividades] ?
@@ -29,5 +30,6 @@ def SP_selectActividades(idEvento):
     for row in cursor.fetchall():
         datos.append(dict(zip(columns, row)))
     cursor.close()
+    conn.close()
     return datos
 
