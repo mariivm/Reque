@@ -27,6 +27,7 @@ def SP_insertarAso(correo, nombre, contrasena):
     cursor.execute(query, (nombre, correo, contrasena))
     datos = cursor.fetchval()
     cursor.close()
+    conn.commit()
     conn.close()
 
     return datos
@@ -77,6 +78,7 @@ def SP_insertarColaborador(carnet, idEvento):
     for row in cursor.fetchall():
         datos.append(dict(zip(columns, row)))
     cursor.close()
+    conn.commit()
     conn.close()
 
     return datos
@@ -96,6 +98,7 @@ def SP_eliminarColaborador(carnet, idEvento):
     for row in cursor.fetchall():
         datos.append(dict(zip(columns, row)))
     cursor.close()
+    conn.commit()
     conn.close()
 
     return datos

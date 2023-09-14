@@ -15,6 +15,7 @@ def SP_insertarEvento(nombre,detalles,fecha,lugar,duracion,cupos,aso):
     for row in cursor.fetchall():
         datos.append(dict(zip(columns, row)))
     cursor.close()
+    conn.commit()
     conn.close()
     return datos
 
@@ -77,6 +78,7 @@ def SP_insertarInscripcion(idEvento,carnet):
     for row in cursor.fetchall():
         datos.append(dict(zip(columns, row)))
     cursor.close()
+    conn.commit()
     conn.close()
     return datos
 
@@ -90,6 +92,22 @@ def SP_insertarPropuesta(carnet, nombre, detalles, fecha, lugar, duracion, capac
         SELECT @RC AS rc;
     """
     cursor.execute(query, (carnet, nombre, detalles, fecha, lugar, duracion, capacidad, nombreAsocia))
+    columns = [column[0] for column in cursor.description]
+    datos = []
+    for row in cursor.fetchall():
+        datos.append(dict(zip(columns, row)))
+    cursor.close()
+    conn.commit()
+    conn.close()
+    return datos
+
+def SP_selectPropuestas(asociacionid):
+    conn = Connection().db()
+    cursor = conn.cursor()
+    query = """\
+        SELECT titulo, descrip, fecha, lugar, duracion, capacidad FROM Propuestas WHERE asociaid = ?
+    """
+    cursor.execute(query, (asociacionid))
     columns = [column[0] for column in cursor.description]
     datos = []
     for row in cursor.fetchall():

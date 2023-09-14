@@ -15,6 +15,7 @@ def SP_insertarEncuesta(idevento, carnet, calLugar, calHorario, calAct, calORrg,
     for row in cursor.fetchall():
         datos.append(dict(zip(columns, row)))
     cursor.close()
+    conn.commit()
     conn.close()
     return datos
 

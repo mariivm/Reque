@@ -32,11 +32,11 @@ const FormEvento = () => {
         if (!nombre | !descripcion | !fecha | !hora | !duracionStr | !capacidadStr | !lugar) {alert("Todos los datos deben ser rellenados"); return;}
         let fechaHora = fecha + " " + hora;
         let payload = {
-            nombre, descripcion, fechaHora, duracion, capacidad, lugar, asociacionID: (userDetails.user.asociacionID)
+            nombre, descripcion, fechaHora, duracion, capacidad, lugar, asociacionid: (userDetails.user.asociacionid ? userDetails.user.asociacionid : 3)
         }
         try {
             let res = await crearEvento(payload);
-            if (!res) {alert("No se pudo crear el evento"); return;}
+            if (!res || res.statusCode == 400) {alert("No se pudo crear el evento"); return;}
             navigate("/calendar")
         } catch (e) {console.log(e)}
     }

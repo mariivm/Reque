@@ -42,7 +42,7 @@ def loginAso():
         'exp': datetime.utcnow() + timedelta(minutes=120)
     }, app.secret_key)
 
-    res = jsonify({'statusCode': 200, 'user': usuario, 'auth_token': token.decode('UTF-8'),  'errors': []})
+    res = jsonify({'statusCode': 200, 'user': usuario, 'auth_token': token,  'errors': []})
     return res
 
 @app.route('/api/register/aso', methods=['POST', 'OPTIONS'])
@@ -54,7 +54,7 @@ def registerAso():
     contrasena = asoInfo['contrasena']
 
     spRes = Usuario.SP_insertarAso(correo, nombre, contrasena)
-    if (spRes == 1):
+    if (not spRes):
         res = {'statusCode': 400, 'user': '', 'auth_token':'', 'errors': ['No se pudo crear el usuario']}
         res = jsonify(res)
         return res
@@ -65,7 +65,7 @@ def registerAso():
         'exp': datetime.utcnow() + timedelta(minutes=120)
     }, app.secret_key)
 
-    res = jsonify({'statusCode': 200, 'user': usuario, 'auth_token': token.decode('UTF-8'),  'errors': []})
+    res = jsonify({'statusCode': 200, 'user': usuario, 'auth_token': token,  'errors': []})
     return res
 
 @app.route('/api/login/estudiante', methods=['POST', 'OPTIONS'])
@@ -101,7 +101,7 @@ def registerEstudiante():
     contrasena = estuInfo['contrasena']
 
     spRes = Usuario.SP_insertarEstudiante(correo, nombre, contrasena, carne)
-    if (spRes == 1):
+    if (not spRes):
         res = {'statusCode': 400, 'user': '', 'auth_token':'', 'errors': ['No se pudo crear el usuario']}
         res = jsonify(res)
         return res
@@ -120,15 +120,15 @@ def registerEstudiante():
 def insertEvento():
     eventInfo = request.get_json()
     nombre = eventInfo['nombre']
-    detalles = eventInfo['detalles']
-    fecha = eventInfo['fecha']
+    detalles = eventInfo['descripcion']
+    fecha = eventInfo['fechaHora']
     lugar = eventInfo['lugar']
     duracion = eventInfo['duracion']
-    cupos = eventInfo['cupos']
-    aso = eventInfo['aso']
+    cupos = eventInfo['capacidad']
+    aso = eventInfo['asociacionid']
 
     spRes = Evento.SP_insertarEvento(nombre,detalles,fecha,lugar,duracion,cupos,aso)
-    if (spRes == 1):
+    if (not spRes):
         res = {'statusCode': 400, 'user': '', 'auth_token':'', 'errors': ['No se pudo registrar el Evento']}
         res = jsonify(res)
         return res
@@ -144,7 +144,6 @@ def selectEventos():
     carnet = estuInfo['carnet']
 
     spRes = Evento.SP_selectEventos(carnet)
-
     if (not spRes):
         res = {'statusCode': 400, 'user': '', 'auth_token':'', 'errors': ['No se pudo consultar eventos']}
         res = jsonify(res)
@@ -161,7 +160,7 @@ def selectEventosInscritos():
 
     spRes = Evento.SP_selectEventosInscritos(carnet)
 
-    if (spRes == 1):
+    if (not spRes):
         res = {'statusCode': 400, 'user': '', 'auth_token':'', 'errors': ['No se pudo consultar eventos inscritos']}
         res = jsonify(res)
         return res
@@ -177,7 +176,7 @@ def selectEventosPasados():
 
     spRes = Evento.SP_selectEventosPasados(carnet)
 
-    if (spRes == 1):
+    if (not spRes):
         res = {'statusCode': 400, 'user': '', 'auth_token':'', 'errors': ['No se pudo consultar eventos pasados']}
         res = jsonify(res)
         return res
@@ -194,7 +193,7 @@ def insertInscripcion():
 
     spRes = Evento.SP_insertarInscripcions(idEvento,carnet)
 
-    if (spRes == 1):
+    if (not spRes):
         res = {'statusCode': 400, 'user': '', 'auth_token':'', 'errors': ['No se pudo realizar la inscripcion']}
         res = jsonify(res)
         return res
@@ -214,7 +213,7 @@ def insertActividad():
 
     spRes = Actividad.SP_insertarActividad(idEvento,horaInicial,horaFinal,ubicacion,nombre)
 
-    if (spRes == 1):
+    if (not spRes):
         res = {'statusCode': 400, 'user': '', 'auth_token':'', 'errors': ['No se pudo insertar la actividad']}
         res = jsonify(res)
         return res
@@ -230,7 +229,7 @@ def selectActividades():
 
     spRes = Actividad.SP_selectActividades(idEvento)
 
-    if (spRes == 1):
+    if (not spRes):
         res = {'statusCode': 400, 'user': '', 'auth_token':'', 'errors': ['No se pudo consultar la actividad']}
         res = jsonify(res)
         return res
@@ -252,7 +251,7 @@ def insertEncuesta():
 
     spRes = Encuesta.SP_insertarEncuesta(idEvento, carnet, calLugar, calHorario, calAct, calORrg, comen)
 
-    if (spRes == 1):
+    if (not spRes):
         res = {'statusCode': 400, 'user': '', 'auth_token':'', 'errors': ['No se pudo insertar la Encuesta']}
         res = jsonify(res)
         return res
@@ -268,7 +267,7 @@ def selectEncuesta():
 
     spRes = Encuesta.SP_selectEncuestas(idEvento)
 
-    if (spRes == 1):
+    if (not spRes):
         res = {'statusCode': 400, 'user': '', 'auth_token':'', 'errors': ['No se pudo consultar la Encuesta']}
         res = jsonify(res)
         return res
@@ -285,7 +284,7 @@ def insertColaborador():
 
     spRes = Usuario.SP_insertarColaborador(carnet,idEvento)
 
-    if (spRes == 1):
+    if (not spRes):
         res = {'statusCode': 400, 'user': '', 'auth_token':'', 'errors': ['No se pudo insertar el colaborador']}
         res = jsonify(res)
         return res
@@ -302,7 +301,7 @@ def eliminarColaborador():
 
     spRes = Usuario.SP_eliminarColaborador(carnet,idEvento)
 
-    if (spRes == 1):
+    if (not spRes):
         res = {'statusCode': 400, 'user': '', 'auth_token':'', 'errors': ['No se pudo eliminar el colaborador']}
         res = jsonify(res)
         return res
@@ -315,7 +314,7 @@ def eliminarColaborador():
 def selectAsocias():
     spRes = Usuario.SP_selectAsocias()
 
-    if (spRes == 1):
+    if (not spRes):
         res = {'statusCode': 400, 'user': '', 'auth_token':'', 'errors': ['No se pudo consultar las asocias']}
         res = jsonify(res)
         return res
@@ -338,7 +337,23 @@ def insertPropuestas():
 
     spRes = Evento.SP_insertarPropuesta(carnet, nombre, detalles, fecha, lugar, duracion, capacidad, nombreAsocia)
 
-    if (spRes == 1):
+    if (not spRes):
+        res = {'statusCode': 400, 'user': '', 'auth_token':'', 'errors': ['No se pudo insertar la propuesta']}
+        res = jsonify(res)
+        return res
+
+    res = jsonify({'statusCode': 200, 'res': spRes})
+    return res
+
+@app.route('/api/select/propuestas', methods=['POST', 'OPTIONS'])
+@cross_origin()
+def selectPropuestas():
+    propInfo = request.get_json()
+    asociacionid = propInfo['asociacionid']
+
+    spRes = Evento.SP_selectPropuestas(asociacionid)
+
+    if (not spRes):
         res = {'statusCode': 400, 'user': '', 'auth_token':'', 'errors': ['No se pudo insertar la propuesta']}
         res = jsonify(res)
         return res

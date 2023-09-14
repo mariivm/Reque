@@ -27,7 +27,7 @@ const Principal = () => {
       setEventos(data.res);
     }
 
-    setEventosEnPantalla(userDetails.user.carnet);
+    setEventosEnPantalla((userDetails.user.carnet ? userDetails.user.carnet : 0));
   }, [userDetails, navigate])
 
 

@@ -44,7 +44,7 @@ export async function fetchEventosInscritos(carne) {
         body: JSON.stringify({carne}),
       };
     try {
-        let res = await fetch(`${ROOT_URL}/selec/eventoinscrito`, requestOptions)
+        let res = await fetch(`${ROOT_URL}/select/eventoinscrito`, requestOptions)
         let data = await res.json()
         return data
     } catch (e) {
@@ -110,15 +110,15 @@ export async function crearPropuesta(payload) {
     }
 }
 
-export async function fetchPropuestas(asociacion) {
+export async function fetchPropuestas(asociacionid) {
     const requestOptions = {
         method: 'POST',
         mode: "cors",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({asociacion}),
+        body: JSON.stringify({asociacionid}),
       };
     try {
-        let res = await fetch(`${ROOT_URL}/propuestasAsociacion`, requestOptions)
+        let res = await fetch(`${ROOT_URL}/select/propuestas`, requestOptions)
         let data = await res.json()
         return data
     } catch (e) {
