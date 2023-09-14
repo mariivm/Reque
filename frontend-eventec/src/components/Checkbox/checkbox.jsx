@@ -15,7 +15,7 @@ function Checkbox() {
         />
         </Col>
         <Col>
-            <p className={styles.p} style={{ left: "10px" }} > <Link to="/colaboradores"><u>Olvidé mi contraseña</u></Link></p>
+            <p className={styles.p} style={{ left: "10px" }} > <u>Olvidé mi contraseña</u></p>
         </Col>
     </Row>
   )
