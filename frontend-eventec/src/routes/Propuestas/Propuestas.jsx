@@ -1,6 +1,6 @@
 import NavbarEventec from "../../components/Navbar/Navbar"
 import EventCard from "../../components/EventCard"
-import { Container, Row, Col } from "react-bootstrap"
+import { Container, Row, Col, Spinner } from "react-bootstrap"
 import styles from "./Propuestas.module.css"
 import { useAuthState } from "../../context"
 import { useNavigate } from "react-router-dom"
@@ -11,7 +11,14 @@ const EventosInscritos = () => {
   const userDetails = useAuthState()
   const navigate = useNavigate()
   const [propuestas, setPropuestas] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
+  const setPropuestasEnPantalla = async (asociacionid) => {
+    let data = await fetchPropuestas(asociacionid);
+    if (!data) return;
+    setPropuestas(data.res);
+    setIsLoading(false)
+  }
 
   useEffect(() => {
     if (!userDetails.user){
@@ -19,14 +26,10 @@ const EventosInscritos = () => {
       return;
     }
 
-    const setPropuestasEnPantalla = async (asociacionid) => {
-      let data = await fetchPropuestas(asociacionid);
-      if (!data) return;
-      setPropuestas(data.res);
-    }
-
     setPropuestasEnPantalla((userDetails.user.asociacionid ? userDetails.user.asociacionid : 3));
   }, [userDetails, navigate])
+
+  if (isLoading) return (<Spinner animation="grow" variant="info" />)
 
 
   return (

@@ -140,7 +140,6 @@ def insertEvento():
 @cross_origin()
 def selectEventos():
     estuInfo = request.get_json()
-    print(estuInfo)
     carnet = estuInfo['carnet']
 
     spRes = Evento.SP_selectEventos(carnet)

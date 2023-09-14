@@ -23,7 +23,19 @@ def SP_selectEventos(carnet):
     conn = Connection().db()
     cursor = conn.cursor()
     query = """\
-        EXEC [eventec].[dbo].[selcEventos] ?
+        -- EXEC [eventec].[dbo].[selcEventos] ACAVASIGNODEPREGUNTA
+
+        SELECT qI.eventoid, qI.titulo, qI.descrip, qI.fecha, qI.lugar, qI.duracion, qI.capacidad, qI.inscripciones, COALESCE(qEI.inscripcionid, 0) as estaInscrito
+FROM
+(SELECT e.eventoid, e.titulo, e.descrip, e.fecha, e.lugar, e.duracion, e.capacidad, count(inscripcionid) as inscripciones 
+FROM Eventos e 
+LEFT JOIN Inscripciones i on e.eventoid = i.eventoid
+WHERE e.fecha >= GETDATE()
+GROUP BY e.eventoid, e.titulo, e.descrip, e.fecha, e.lugar, e.duracion, e.capacidad) AS qI
+LEFT JOIN
+(SELECT e.eventoid, i.inscripcionid FROM Eventos e 
+INNER JOIN Inscripciones i on e.eventoid = i.eventoid
+WHERE e.fecha >= GETDATE() AND i.carnet = ?) AS qEI on qEI.eventoid = qI.eventoid;
     """
     cursor.execute(query, (carnet))
     columns = [column[0] for column in cursor.description]
