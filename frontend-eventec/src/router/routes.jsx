@@ -10,6 +10,7 @@ import Foro from '../routes/Foro/Foro';
 import FormActividad from '../routes/FormActividad/FormActividad';
 import FormPropuesta from '../routes/FormPropuesta/FormPropuesta';
 import Propuestas from '../routes/Propuestas/Propuestas'
+import EstadisticaEvento from '../routes/EstadisticasEvento/EstadisticaEvento';
 // import FormEvento from '../routes/FormEvento/FormEvento';
 
 const routes = 
@@ -72,6 +73,11 @@ const routes =
     {
       path: "/verPropuestas",
       element: <Propuestas />,
+      isPrivate: true
+    },
+    {
+      path: "/estadisticaEvento",
+      element: <EstadisticaEvento />,
       isPrivate: true
     }
 ]
