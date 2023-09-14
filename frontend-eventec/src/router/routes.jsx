@@ -9,12 +9,10 @@ import Feedback from '../routes/Feedback/Feedback';
 import Foro from '../routes/Foro/Foro';
 import FormActividad from '../routes/FormActividad/FormActividad';
 import FormPropuesta from '../routes/FormPropuesta/FormPropuesta';
-<<<<<<< HEAD
 import Colaboradores from '../routes/Colaboradores/Colaboradores';
-=======
+import AgregarColaborador from '../routes/Colaboradores/AgregarColaborador';
 import Propuestas from '../routes/Propuestas/Propuestas'
 // import FormEvento from '../routes/FormEvento/FormEvento';
->>>>>>> a50b2daa60822d71700cd94133823a06dfd935d4
 
 const routes = 
 [
@@ -74,15 +72,19 @@ const routes =
       isPrivate: true,
     },
     {
-<<<<<<< HEAD
       path: "/colaboradores",
       element: <Colaboradores />,
       isPrivate: true,
-=======
+    },
+    {
+      path: "/agregarColabs",
+      element: <AgregarColaborador />,
+      isPrivate: false,
+    },
+    {
       path: "/verPropuestas",
       element: <Propuestas />,
       isPrivate: true
->>>>>>> a50b2daa60822d71700cd94133823a06dfd935d4
-    }
+    },
 ]
 export default routes
