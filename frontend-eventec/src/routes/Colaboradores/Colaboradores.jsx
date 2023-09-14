@@ -1,75 +1,72 @@
-import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
-import Checkbox from '../../components/Checkbox/checkbox';
 import { Button } from 'react-bootstrap';
-// import { Link, useNavigate } from "react-router-dom";
-// import { useState } from 'react';
-// import { loginAso, useAuthDispatch } from '../../context';
-// import styles from "./acceso.module.css";
+import { useState } from 'react';
+import styles from "./colaboradores.module.css";
+import Colaborador from "../../components/Colaborador/Colaborador"
 
-const Root = () => {
-//   const [correoAsociacion, setCorreoAsociacion] = useState("");
-//   const [contrasena, setContrasena] = useState("");
-//   const navigate = useNavigate()
+const Colaboradores = () => {
+  const [seleccion, setSeleccion] = useState("");
 
-//   const dispatch = useAuthDispatch();
+  const handle = () => {
+    navigate("/agregarColabs")
+  }
 
-//   const handleLogin = async (e) => {
-//     e.preventDefault();
-//     let payload = {correoAsociacion, contrasena}
-//     try {
-//       let response = await loginAso(dispatch, payload)
-//       if (!response.user) return;
-//       navigate("/calendar")
-//     } catch (error) {
-//       console.log(error)
-//     }
-//   }
-    
+  const ListaColabs = ({eventos, evento}) => {
+    return (
+      <>
+        {eventos[evento].map((array) => (
+          <Colaborador className={styles.colabs} nombre={array[0]} carnet={array[1]} correo={array[2]} celular={array[3]}/>
+        ))}
+      </>
+    )
+}
+
+  const eventos = ["Noche de películas", "Noche bailable", "Rally"]
+  const colabsXEvento = {
+    "Noche de películas": [
+      ["Marco", "2020167547", "marco@estudiantec.cr", "87659073"],
+      ["Gabriela", "2021176503", "gabriela@estudiantec.cr", "67603017"]
+    ],
+    "Noche bailable": [
+      ["Fabian", "2021167476", "fabian@estudiantec.cr", "87659073"],
+      ["Alberto", "2023685547", "alberto@estudiantec.cr", "67603017"]
+    ],
+    "Rally": [
+      ["Maria", "2019167547", "maria@estudiantec.cr", "87659073"],
+      ["Jimena", "2018167547", "jimena@estudiantec.cr", "67603017"]
+    ]
+  }
+   
   return (
     <div>
       <span className={styles.span} style={{ color: "#FFFFFF", left: "20px", top: "10px" }}>EVEN</span>
       <span className={styles.span} style={{ left: "20px", top: "10px" }}>TEC</span>
 
       <h1 className={styles.h1}>
-        Iniciar Sesión
+        Colaboradores
       </h1>
 
       <p className={styles.p}>
-        Ingresa a la plataforma como asociación
+        Consultar y editar los colaboradores de un evento
       </p>
 
-      <div className={styles.cuadrado}>
-        <Row>
-          <Col xs={10} className={styles.col}>
-            <Form.Control value={correoAsociacion} onChange={e => setCorreoAsociacion(e.target.value)} type="text" placeholder={"Correo de Asociación"} style={{ textAlign: "center" }}/>
-            </Col>
-        </Row>
-        <br/>
-        <Row>
-          <Col xs={10} className={styles.col}>
-            <Form.Control value={contrasena} onChange={e => setContrasena(e.target.value)} type="text" placeholder={"Contraseña"} style={{ textAlign: "center" }}/>
-            </Col>
-        </Row>
-      <br/>
-      <br/>
-
-      <Checkbox/>
-
-      <Button className={styles.button} onClick={handleLogin}> Ingresar </Button>
-      <br/>
-      <br/>
-
-      <span className={styles.span} style={{ color: "gray"}}>¿No tienes una cuenta?</span>
-      <span className={styles.span}> <Link to="/registroAso"> <u>Regístrate</u></Link> </span>
-
-      <br/>
-
-      <span className={styles.span}> <Link to="/loginEstudiante"><u>Iniciar sesión como estudiante</u></Link> </span>
-      </div>
+      <Form>
+        <fieldset>
+          <Form.Group className={styles.select}>
+            <Form.Label htmlFor="Select">Evento</Form.Label>
+            <Form.Select id="Select" as="select" value={seleccion} onChange={e => setSeleccion(e.target.value)}>
+              {eventos.map((nombre) => (
+                <option>{nombre}</option>
+              ))}
+            </Form.Select>
+            <Button className={styles.button} onClick={<ListaColabs eventos={colabsXEvento} evento={"Rally"}/>} type="submit">Consultar</Button>
+            <Button style={{ width: "200px", position: "relative", left: "850px" }} className={styles.button} onClick={handle} type="submit">Agregar Colaborador</Button>
+          </Form.Group>
+        </fieldset>
+      </Form>
+      <ListaColabs eventos={colabsXEvento} evento={"Rally"}/>
     </div>
   )
 }
 
-export default Root
+export default Colaboradores

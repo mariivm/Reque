@@ -10,7 +10,10 @@ def SP_insertarEncuesta(idevento, carnet, calLugar, calHorario, calAct, calORrg,
         SELECT @RC AS rc;
     """
     cursor.execute(query, (idevento, carnet, calLugar, calHorario, calAct, calORrg, comene))
-    datos = cursor.fetchval()
+    columns = [column[0] for column in cursor.description]
+    datos = []
+    for row in cursor.fetchall():
+        datos.append(dict(zip(columns, row)))
     cursor.close()
     return datos
 
@@ -21,6 +24,9 @@ def SP_selectEncuestas(idevento):
         EXEC [eventec].[dbo].[Select_Encuestas] ?
     """
     cursor.execute(query, (idevento))
-    datos = cursor.fetchval()
+    columns = [column[0] for column in cursor.description]
+    datos = []
+    for row in cursor.fetchall():
+        datos.append(dict(zip(columns, row)))
     cursor.close()
     return datos
