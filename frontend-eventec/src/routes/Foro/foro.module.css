@@ -28,3 +28,9 @@ color: #22AAA1;
     width: 1100px;
     bottom: -40px;
 }
+
+.stack{
+    height: 55vh;
+    overflow: auto;
+    scroll-behavior: smooth;
+}

@@ -17,7 +17,15 @@ const Foro = () => {
                 Espacio libre para hacer comentarios <br/> públicos sobre nuestros eventos
             </p>
 
-            <Stack gap={0}>
+            <Stack className={styles.stack} gap={0}>
+                <Message NombreEstudiante={"Armando"} Comentario={"Me gustó mucho"}/>
+                <Message NombreEstudiante={"Armando"} Comentario={"Me gustó mucho"}/>
+                <Message NombreEstudiante={"Armando"} Comentario={"Me gustó mucho"}/>
+                <Message NombreEstudiante={"Armando"} Comentario={"Me gustó mucho"}/>
+                <Message NombreEstudiante={"Armando"} Comentario={"Me gustó mucho"}/>
+                <Message NombreEstudiante={"Armando"} Comentario={"Me gustó mucho"}/>
+                <Message NombreEstudiante={"Armando"} Comentario={"Me gustó mucho"}/>
+                <Message NombreEstudiante={"Armando"} Comentario={"Me gustó mucho"}/>
                 <Message NombreEstudiante={"Armando"} Comentario={"Me gustó mucho"}/>
                 <Message NombreEstudiante={"Armando"} Comentario={"Me gustó mucho"}/>
                 <Message NombreEstudiante={"Armando"} Comentario={"Me gustó mucho"}/>
