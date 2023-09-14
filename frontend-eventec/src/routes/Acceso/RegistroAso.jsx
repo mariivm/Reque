@@ -25,7 +25,7 @@ const RegistroAso = () => {
 
 
       let response = await registerAso(dispatch, payload)
-      if (response.statusCode == 400) {alert("Usuario o contrasena incorrecta!"); return;}
+      if (response.statusCode != 200) {alert("Usuario o contrasena incorrecta!"); return;}
       if (!response.user) return;
       navigate("/calendar")
     } catch (error) {

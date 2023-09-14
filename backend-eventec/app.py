@@ -92,7 +92,7 @@ def loginEstudiante():
 @cross_origin()
 def registerEstudiante():
     estuInfo = request.get_json()
-    correo = estuInfo['correoEstudiante']
+    correo = estuInfo['correoInstitucional']
     nombre = estuInfo['nombreEstudiante']
     carne = estuInfo['carne']
     contrasena = estuInfo['contrasena']

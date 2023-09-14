@@ -24,7 +24,7 @@ const Root = () => {
       if (!esCorreoEstudiantec(correoAsociacion)) {alert("Debe utilizar un correo estudiantil"); return;}
 
       let response = await loginAso(dispatch, payload)
-      if (response.statusCode == 400) {alert("Usuario o contrasena incorrecta!"); return;}
+      if (response.statusCode != 200) {alert("Usuario o contrasena incorrecta!"); return;}
       if (!response.user) return;
       navigate("/calendar")
     } catch (error) {
