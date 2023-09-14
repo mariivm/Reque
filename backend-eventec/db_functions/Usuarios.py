@@ -28,7 +28,6 @@ def SP_insertarAso(correo, nombre, contrasena):
 def fetchUsuarioEstudiante(correo, contrasena):
     conn = Connection().db
     cursor = conn.cursor()
-    
     query = """\
         EXEC [eventec].[dbo].[Login_Estu] ?, ?
         """

@@ -60,7 +60,7 @@ const FormActividad = () => {
                 <Col>
                     <Form.Group className={styles.formGroup} controlId="Nombre">
                         <Form.Label>Seleccione el evento en el que se realizara la actividad</Form.Label>
-                        <Form.Select value={evento} onChange={e => setEvento(e.target.value)} aria-label="Seleccione la carrera">
+                        <Form.Select value={evento} onChange={e => setEvento(e.target.value)} aria-label="Seleccione el evento">
                             {eventos.map((eve, index) => (<option key={index}>{eve.nombre}</option>))}
                         </Form.Select>
                     </Form.Group>

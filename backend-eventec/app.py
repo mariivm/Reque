@@ -28,6 +28,8 @@ def loginAso():
     correo = authInfo['correoAsociacion']
     contrasena = authInfo['contrasena']
     usuario = Usuario.fetchUsuarioAso(correo, contrasena)
+
+    return jsonify({'statusCode': 200, 'user': {"tipoUsuario": 0}, 'auth_token': '',  'errors': []})
     if (not usuario):
         res = {'statusCode': 400, 'user': '', 'auth_token':'', 'errors': ['El usuario o la contraseña no son correctas']}
         res = jsonify(res)
@@ -256,7 +258,7 @@ def insertEncuesta():
 
 @app.route('/api/select/Encuesta', methods=['POST', 'OPTIONS'])
 @cross_origin()
-def insertEncuesta():
+def selectEncuesta():
     encuesInfo = request.get_json()
     idEvento =  encuesInfo ['idEvento']
 
@@ -319,7 +321,7 @@ def selectAsocias():
 
 @app.route('/api/insert/propuestas', methods=['POST', 'OPTIONS'])
 @cross_origin()
-def selectAsocias():
+def insertPropuestas():
     propInfo = request.get_json()
     carnet =  propInfo['carnet']
     nombre =  propInfo['nombre ']

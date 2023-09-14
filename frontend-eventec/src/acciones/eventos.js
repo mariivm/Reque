@@ -126,3 +126,20 @@ export async function fetchPropuestas(asociacion) {
         return;
     }
 }
+
+export async function fetchEventosPasados(asociacion) {
+    const requestOptions = {
+        method: 'POST',
+        mode: "cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({asociacion}),
+      };
+    try {
+        let res = await fetch(`${ROOT_URL}/eventos/pasados`, requestOptions)
+        let data = await res.json()
+        return data
+    } catch (e) {
+        console.log(e)
+        return;
+    }
+}
