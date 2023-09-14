@@ -1,4 +1,4 @@
-import { Button, Form, Row, Col, Navbar } from 'react-bootstrap';
+import { Button, Form, Row, Col } from 'react-bootstrap';
 import Radio from '../../components/Radio/Radio'
 import styles from "./feedback.module.css";
 import NavbarEventec from '../../components/Navbar/Navbar';

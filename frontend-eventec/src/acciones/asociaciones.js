@@ -9,7 +9,7 @@ export async function fetchAsociaciones(){
     
 
     try {
-        let res = await fetch(`${ROOT_URL}/asociaciones`, requestOptions)
+        let res = await fetch(`${ROOT_URL}/select/asocias`, requestOptions)
         let data = await res.json()
         return data
     } catch (e) {

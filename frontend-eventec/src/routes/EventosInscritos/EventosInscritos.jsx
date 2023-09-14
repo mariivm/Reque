@@ -15,7 +15,7 @@ const EventosInscritos = () => {
 
 
   const setEventosEnPantalla = async (carnet) => {
-    let data = await fetchEventosInscritos(carnet);
+    let data = await fetchEventosInscritos({carnet: carnet});
     if (!data) return;
     setEventos(data.res);
     setIsLoading(false)
@@ -39,10 +39,9 @@ const EventosInscritos = () => {
             <Row>
                 <Col>
                     <h1 className={styles.h1}>Eventos Inscritos</h1>
-                    {eventos.map((evento) => {
-                      <EventCard nombre={evento.nombre} fecha={evento.fecha} lugar={evento.lugar} personasInscritas={evento.personasInscritas} cupos={evento.cupos} duracion={evento.duracion} esAsocia={0} estaInscrito={1} descripcion={evento.descripcion} />
+                    {eventos.map((evento, index) => {
+                      return <EventCard key={index} eventoid={evento.eventoid} nombre={evento.titulo} fecha={evento.fecha} lugar={evento.lugar} personasInscritas={evento.personasInscritas} cupos={evento.cupos} duracion={evento.duracion} esAsocia={0} estaInscrito={1} descripcion={evento.descripcion} />
                     })}
-                    <EventCard nombre={"Noche Bailable"} fecha={"2023/09/22 6:30 PM"} lugar={"Edificio D3"} personasInscritas={500} cupos={500} duracion={"2 horas"} esAsocia={false} estaInscrito={false} descripcion={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."}/>
                 </Col>
             </Row>
         </Container>

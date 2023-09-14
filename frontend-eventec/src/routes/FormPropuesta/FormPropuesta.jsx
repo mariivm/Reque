@@ -1,5 +1,5 @@
 import NavbarEventec from "../../components/Navbar/Navbar"
-import { Container, Row, Col, Form, Button } from "react-bootstrap"
+import { Container, Row, Col, Form, Button, Spinner } from "react-bootstrap"
 import styles from './FormPropuesta.module.css'
 import { useState, useEffect } from "react"
 import { crearPropuesta } from "../../acciones/eventos"
@@ -9,6 +9,7 @@ import { useAuthState } from "../../context"
 
 const FormPropuesta = () => {
     const [asociaciones, setAsociaciones] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
     const userDetails = useAuthState();
     const navigate = useNavigate();
     const [asociacion, setAsociacion] = useState("")
@@ -19,12 +20,11 @@ const FormPropuesta = () => {
     const [duracionStr, setDuracion] = useState("")
     const [lugar, setLugar] = useState("")
     const [capacidadStr, setCapacidad] = useState("")
-    const [requisitos, setRequisitos] = useState("")
 
     const setAsociacionesEnPantalla = async () => {
-        // let data = await fetchAsociaciones();
-        let data = []
-        setAsociaciones(data);
+        let data = await fetchAsociaciones();
+        setAsociaciones(data.res);
+        setIsLoading(false);
     }
 
     useEffect(() => {
@@ -45,10 +45,10 @@ const FormPropuesta = () => {
             return;
         }
 
-        if (!nombre || !descripcion || !fecha || !hora || !duracionStr || !capacidadStr || !lugar || !asociacion || !requisitos) {alert("Todos los datos deben ser rellenados"); return;}
+        if (!nombre || !descripcion || !fecha || !hora || !duracionStr || !capacidadStr || !lugar || !asociacion) {alert("Todos los datos deben ser rellenados"); return;}
         let fechaHora = fecha + " " + hora;
         let payload = {
-            nombre, descripcion, fechaHora, duracion, capacidad, lugar, asociacion, creador: userDetails.user.carne, requisitos
+            nombre, detalles: descripcion, fecha: fechaHora, duracion, capacidad, lugar, nombreAsocia: asociacion, carnet: (userDetails.user.carnet)
         }
         try {
             let res = await crearPropuesta(payload);
@@ -57,6 +57,8 @@ const FormPropuesta = () => {
         } catch (e) {console.log(e)}
     }
 
+
+    if (isLoading) return (<Spinner animation="grow" variant="info" />)
 
   return (
     <>
@@ -67,7 +69,7 @@ const FormPropuesta = () => {
                     <Form.Group className={styles.formGroup} controlId="Nombre">
                         <Form.Label>Seleccione la asociacion a la que le quiere proponer el evento</Form.Label>
                         <Form.Select value={asociacion} onChange={e => setAsociacion(e.target.value)} aria-label="Seleccione la asociacion">
-                            {asociaciones.map((eve, index) => (<option key={index}>{eve.nombre}</option>))}
+                            {asociaciones.map((aso, index) => (<option key={index}>{aso.nombre}</option>))}
                         </Form.Select>
                     </Form.Group>
                     <Form.Group className={styles.formGroup} controlId="descrpcion">
@@ -101,15 +103,11 @@ const FormPropuesta = () => {
                         <Form.Label>Lugar</Form.Label>
                         <Form.Control type="text" placeholder="Ingrese el lugar del evento" value={lugar} onChange={e => setLugar(e.target.value)} />
                     </Form.Group>
+                </Col>
+                <Col>
                     <Form.Group className={styles.formGroup} controlId="capacidad">
                         <Form.Label>Capacidad</Form.Label>
                         <Form.Control type="number" placeholder="Ingrese la capacidad de personas" value={capacidadStr} onChange={e => setCapacidad(e.target.value)} />
-                    </Form.Group>
-                </Col>
-                <Col>
-                    <Form.Group className={`${styles.formGroup} ${styles.requisitos}`} controlId="Requisitos">
-                        <Form.Label>Requisitos</Form.Label>
-                        <Form.Control className={styles.textarea} type="text" placeholder="Ingrese los requisitos del evento" value={requisitos} onChange={e => setRequisitos(e.target.value)} />
                     </Form.Group>
                 </Col>
             </Row>

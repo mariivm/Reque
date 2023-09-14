@@ -28,7 +28,7 @@ const Principal = () => {
     }
 
     setEventosEnPantalla((userDetails.user.carnet ? userDetails.user.carnet : 0));
-  }, [userDetails])
+  }, [userDetails, navigate])
 
   if (isLoading) return (<Spinner animation="grow" variant="info" />)
   return (
@@ -40,7 +40,7 @@ const Principal = () => {
                     <h1 className={styles.h1}>Eventos</h1>
                     {eventos.map((evento, index) => {
                       return (
-                      <EventCard key={index} nombre={evento.titulo} fecha={evento.fecha} lugar={evento.lugar} personasInscritas={evento.inscripciones} cupos={evento.capacidad} duracion={evento.duracion} esAsocia={(userDetails.user.tipo == 1)} estaInscrito={evento.estaInscrito} descripcion={evento.descrip} actividades={evento.actividades} />
+                      <EventCard eventoid={evento.eventoid} key={index} nombre={evento.titulo} fecha={evento.fecha} lugar={evento.lugar} personasInscritas={evento.inscripciones} cupos={evento.capacidad} duracion={evento.duracion} esAsocia={(userDetails.user.tipo == 1)} estaInscrito={evento.estaInscrito} descripcion={evento.descrip} actividades={evento.actividades} />
                       )})}
                 </Col>
             </Row>

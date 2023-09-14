@@ -36,12 +36,12 @@ export async function fetchEventos(carnet) {
     }
 }
 
-export async function fetchEventosInscritos(carne) {
+export async function fetchEventosInscritos(payload) {
     const requestOptions = {
         method: 'POST',
         mode: "cors",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({carne}),
+        body: JSON.stringify(payload),
       };
     try {
         let res = await fetch(`${ROOT_URL}/select/eventoinscrito`, requestOptions)
@@ -53,17 +53,17 @@ export async function fetchEventosInscritos(carne) {
     }
 }
 
-export async function fetchEventosPropios(asociacionid) {
+export async function fetchEventosPropios(payload) {
     const requestOptions = {
         method: 'POST',
         mode: "cors",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(asociacionid),
+        body: JSON.stringify(payload),
       };
     
 
     try {
-        let res = await fetch(`${ROOT_URL}/crearEvento`, requestOptions)
+        let res = await fetch(`${ROOT_URL}/select/eventos/propios`, requestOptions)
         let data = await res.json()
         return data
     } catch (e) {
@@ -82,7 +82,7 @@ export async function crearActividad(payload) {
     
 
     try {
-        let res = await fetch(`${ROOT_URL}/crearActividad`, requestOptions)
+        let res = await fetch(`${ROOT_URL}/insert/actividad`, requestOptions)
         let data = await res.json()
         return data
     } catch (e) {
@@ -101,7 +101,7 @@ export async function crearPropuesta(payload) {
     
 
     try {
-        let res = await fetch(`${ROOT_URL}/crearPropuesta`, requestOptions)
+        let res = await fetch(`${ROOT_URL}/insert/propuestas`, requestOptions)
         let data = await res.json()
         return data
     } catch (e) {
@@ -136,6 +136,76 @@ export async function fetchEventosPasados(asociacion) {
       };
     try {
         let res = await fetch(`${ROOT_URL}/select/eventopasado`, requestOptions)
+        let data = await res.json()
+        return data
+    } catch (e) {
+        console.log(e)
+        return;
+    }
+}
+
+export async function crearInscripcion(payload) {
+    const requestOptions = {
+        method: 'POST',
+        mode: "cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      };
+    try {
+        let res = await fetch(`${ROOT_URL}/insert/inscripcion`, requestOptions)
+        let data = await res.json()
+        return data
+    } catch (e) {
+        console.log(e)
+        return;
+    }
+}
+
+export async function fetchEstadisticas({eventoid}) {
+    const requestOptions = {
+        method: 'POST',
+        mode: "cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({eventoid}),
+      };
+    try {
+        let res = await fetch(`${ROOT_URL}/select/eventos/estadisticas`, requestOptions)
+        let data = await res.json()
+        return data
+    } catch (e) {
+        console.log(e)
+        return;
+    }
+}
+
+export async function fetchFeedbacks({eventoid}) {
+    const requestOptions = {
+        method: 'POST',
+        mode: "cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({eventoid}),
+      };
+    try {
+        let res = await fetch(`${ROOT_URL}/select/encuesta`, requestOptions)
+        let data = await res.json()
+        return data
+    } catch (e) {
+        console.log(e)
+        return;
+    }
+}
+
+export async function fetchAllEventosPropios(payload) {
+    const requestOptions = {
+        method: 'POST',
+        mode: "cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      };
+    
+
+    try {
+        let res = await fetch(`${ROOT_URL}/select/eventos/all`, requestOptions)
         let data = await res.json()
         return data
     } catch (e) {
