@@ -110,12 +110,12 @@ export async function crearPropuesta(payload) {
     }
 }
 
-export async function fetchPropuestas(asociacionid) {
+export async function fetchPropuestas(payload) {
     const requestOptions = {
         method: 'POST',
         mode: "cors",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({asociacionid}),
+        body: JSON.stringify(payload),
       };
     try {
         let res = await fetch(`${ROOT_URL}/select/propuestas`, requestOptions)
@@ -206,6 +206,25 @@ export async function fetchAllEventosPropios(payload) {
 
     try {
         let res = await fetch(`${ROOT_URL}/select/eventos/all`, requestOptions)
+        let data = await res.json()
+        return data
+    } catch (e) {
+        console.log(e)
+        return;
+    }
+}
+
+export async function crearFeedback(payload) {
+    const requestOptions = {
+        method: 'POST',
+        mode: "cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      };
+    
+
+    try {
+        let res = await fetch(`${ROOT_URL}/insert/encuesta`, requestOptions)
         let data = await res.json()
         return data
     } catch (e) {

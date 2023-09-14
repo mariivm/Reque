@@ -28,11 +28,13 @@ const EstadisticaEvento = () => {
     const setFeedbackEnPantalla = async(eventoid) => {
         let dataEstadisticas = await fetchEstadisticas({eventoid});
         let dataFeedbacks = await fetchFeedbacks({eventoid});
-        // if(!dataFeedbacks.res) {alert("No hay datos del evento")}
-        // setAvgActividades(dataEstadisticas.res[0].);
-        // setAvgHorario(dataEstadisticas.res[0].);
-        // setAvgLugar(dataEstadisticas.res[0].);
-        // setAvgOrganizacion(dataEstadisticas.res[0].);
+        setFeedbacks((dataFeedbacks.res ? dataFeedbacks.res : []))
+        if (dataEstadisticas.res[0]) {
+            setAvgActividades(dataEstadisticas.res[0].califAct);
+            setAvgHorario(dataEstadisticas.res[0].califHorario);
+            setAvgLugar(dataEstadisticas.res[0].califLugar);
+            setAvgOrganizacion(dataEstadisticas.res[0].califOrg);
+        }
         setFeedbacks((dataFeedbacks.res ? dataFeedbacks.res : []))
         setIsLoading(false)
     }
@@ -43,7 +45,7 @@ const EstadisticaEvento = () => {
             return;
           }
         setEventosEnPantalla((userDetails.user.asociacionid ? userDetails.user.asociacionid : 3))
-    }, [userDetails, navigate])
+    }, [])
 
     useEffect(() => {
         setIsLoading(true)
@@ -61,6 +63,7 @@ const EstadisticaEvento = () => {
                 <Form.Group className={styles.selectorCarrera} controlId="Nombre">
                     <Form.Label>Seleccione el evento que quiere consultar</Form.Label>
                     <Form.Select value={evento} onChange={e => setEvento(e.target.value)} aria-label="Seleccione el evento">
+                        <option value={0}>Seleccione un evento:</option>
                         {eventos.map((eve, index) => (<option key={index} value={eve.eventoid}>{eve.titulo}</option>))}
                     </Form.Select>
                 </Form.Group>
@@ -76,7 +79,7 @@ const EstadisticaEvento = () => {
                 </Col>
             </Row>
             <Row className={`overflow-auto ${styles.cardContainer}`}>
-                {feedbacks.map((feedback, index) => (<FeedbackCard key={index} estudiante={feedback.correo} lugar={feedback.lugar} horario={feedback.horario} actividades={feedback.actividades} comentario={feedback.comentario} />))}
+                {feedbacks.map((feedback, index) => (<FeedbackCard key={index} estudiante={feedback.carne} lugar={feedback.califLugar} horario={feedback.califHorario} actividades={feedback.califAct} organizacion={feedback.califOrg} comentario={feedback.comentario} />))}
             </Row>
         </Container>
     </>

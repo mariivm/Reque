@@ -48,7 +48,7 @@ const FormPropuesta = () => {
         if (!nombre || !descripcion || !fecha || !hora || !duracionStr || !capacidadStr || !lugar || !asociacion) {alert("Todos los datos deben ser rellenados"); return;}
         let fechaHora = fecha + " " + hora;
         let payload = {
-            nombre, detalles: descripcion, fecha: fechaHora, duracion, capacidad, lugar, nombreAsocia: asociacion, carnet: (userDetails.user.carnet)
+            nombre, detalles: descripcion, fecha: fechaHora, duracion, capacidad, lugar, asociacionid: asociacion, carnet: (userDetails.user.carnet)
         }
         try {
             let res = await crearPropuesta(payload);
@@ -69,7 +69,7 @@ const FormPropuesta = () => {
                     <Form.Group className={styles.formGroup} controlId="Nombre">
                         <Form.Label>Seleccione la asociacion a la que le quiere proponer el evento</Form.Label>
                         <Form.Select value={asociacion} onChange={e => setAsociacion(e.target.value)} aria-label="Seleccione la asociacion">
-                            {asociaciones.map((aso, index) => (<option key={index}>{aso.nombre}</option>))}
+                            {asociaciones.map((aso, index) => (<option key={index} value={aso.asociacionid}>{aso.nombre}</option>))}
                         </Form.Select>
                     </Form.Group>
                     <Form.Group className={styles.formGroup} controlId="descrpcion">

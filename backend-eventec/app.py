@@ -255,13 +255,13 @@ def selectActividades():
 @cross_origin()
 def insertEncuesta():
     encuesInfo = request.get_json()
-    idEvento =  encuesInfo ['idEvento']
+    idEvento =  encuesInfo ['eventoid']
     carnet = encuesInfo ['carnet']
     calLugar = encuesInfo ['calLugar']
     calHorario = encuesInfo ['calHorario']
     calAct = encuesInfo ['calAct']
-    calORrg = encuesInfo ['calORrg']
-    comen = encuesInfo ['comene']
+    calORrg = encuesInfo ['calOrg']
+    comen = encuesInfo ['coment']
 
     spRes = Encuesta.SP_insertarEncuesta(idEvento, carnet, calLugar, calHorario, calAct, calORrg, comen)
 
@@ -286,7 +286,7 @@ def selectEncuesta():
         res = jsonify(res)
         return res
 
-    res = jsonify({'statusCode': 200})
+    res = jsonify({'statusCode': 200, 'res': spRes})
     return res
 
 @app.route('/api/insert/colaborador', methods=['POST', 'OPTIONS'])
@@ -347,9 +347,9 @@ def insertPropuestas():
     lugar =  propInfo['lugar']
     duracion =  propInfo['duracion']
     capacidad =  propInfo['capacidad']
-    nombreAsocia =  propInfo['nombreAsocia']
+    asociacionid =  propInfo['asociacionid']
 
-    spRes = Evento.SP_insertarPropuesta(carnet, nombre, detalles, fecha, lugar, duracion, capacidad, nombreAsocia)
+    spRes = Evento.SP_insertarPropuesta(carnet, nombre, detalles, fecha, lugar, duracion, capacidad, asociacionid)
 
     if (not spRes):
         res = {'statusCode': 400, 'user': '', 'auth_token':'', 'errors': ['No se pudo insertar la propuesta']}
@@ -368,7 +368,7 @@ def selectPropuestas():
     spRes = Evento.SP_selectPropuestas(asociacionid)
 
     if (not spRes):
-        res = {'statusCode': 400, 'user': '', 'auth_token':'', 'errors': ['No se pudo insertar la propuesta']}
+        res = {'statusCode': 400, 'res':[], 'auth_token':'', 'errors': ['No se pudo insertar la propuesta']}
         res = jsonify(res)
         return res
 
@@ -400,7 +400,7 @@ def selectEstadisticas():
     spRes = Evento.SP_selectEstadisticas(eventoid)
 
     if (not spRes):
-        res = {'statusCode': 400, 'user': '', 'auth_token':'', 'errors': ['No se pudo realizar la consulta']}
+        res = {'statusCode': 400, 'user': '', 'auth_token':'', 'errors': ['No se pudo realizar la consulta de estadisticas']}
         res = jsonify(res)
         return res
 

@@ -14,8 +14,8 @@ const EventosInscritos = () => {
   const [isLoading, setIsLoading] = useState(true)
 
   const setPropuestasEnPantalla = async (asociacionid) => {
-    let data = await fetchPropuestas(asociacionid);
-    if (!data) return;
+    let data = await fetchPropuestas({asociacionid: asociacionid});
+    if (!data || !data.res) return;
     setPropuestas(data.res);
     setIsLoading(false)
   }

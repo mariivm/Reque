@@ -108,7 +108,7 @@ def SP_insertarInscripcion(idEvento,carnet):
     conn.close()
     return datos
 
-def SP_insertarPropuesta(carnet, nombre, detalles, fecha, lugar, duracion, capacidad, nombreAsocia):
+def SP_insertarPropuesta(carnet, nombre, detalles, fecha, lugar, duracion, capacidad, asociacionid):
     conn = Connection().db()
     cursor = conn.cursor()
     query = """\
@@ -117,7 +117,7 @@ def SP_insertarPropuesta(carnet, nombre, detalles, fecha, lugar, duracion, capac
         EXEC @RC = [eventec].[dbo].[Insert_Propuesta] ?, ?, ?, ?, ?, ?, ?, ?
         SELECT @RC AS rc;
     """
-    cursor.execute(query, (carnet, nombre, detalles, fecha, lugar, duracion, capacidad, nombreAsocia))
+    cursor.execute(query, (carnet, nombre, detalles, fecha, lugar, int(duracion), int(capacidad), asociacionid))
     columns = [column[0] for column in cursor.description]
     datos = []
     for row in cursor.fetchall():
@@ -164,10 +164,12 @@ def SP_selectEstadisticas(eventoid):
     conn = Connection().db()
     cursor = conn.cursor()
     query = """\
-        SET NOCOUNT ON;
-        DECLARE @RC int;
-        EXEC @RC = [eventec].[dbo].[get_estadisticas] ?
-        SELECT @RC AS rc;
+        -- SET NOCOUNT ON;
+        -- DECLARE @RC int;
+        -- EXEC @RC = [eventec].[dbo].[get_estadisticas] SIGNODEPREGUNTA
+        -- SELECT @RC AS rc;
+
+        SELECT eventoid, AVG(califLugar) as califLugar, AVG(califHorario) as califHorario, AVG(califAct) as califAct, AVG(califOrg) as califOrg FROM dbo.Encuestas WHERE eventoid = ? GROUP BY eventoid;
     """
     cursor.execute(query, (eventoid))
     columns = [column[0] for column in cursor.description]

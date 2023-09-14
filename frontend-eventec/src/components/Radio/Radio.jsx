@@ -1,7 +1,11 @@
-import React from 'react';
 import Form from 'react-bootstrap/Form';
 
-function Radio({nombreCalificacion}) {
+// eslint-disable-next-line react/prop-types
+function Radio({nombreCalificacion, state, setState}) {
+  const onOptionChange = (e)=> {
+    setState(e.target.value);
+  }
+
   return (
     <Form>
         {nombreCalificacion}
@@ -12,6 +16,9 @@ function Radio({nombreCalificacion}) {
             name="group1"
             type={"radio"}
             id={"radio1"}
+            value={1}
+            checked={state === 1}
+            onChange={(e) => onOptionChange(e)}
             />
             <Form.Check
             inline
@@ -19,6 +26,9 @@ function Radio({nombreCalificacion}) {
             name="group1"
             type={"radio"}
             id={"radio2"}
+            value={2}
+            checked={state === 2}
+            onChange={onOptionChange}
             />
             <Form.Check
             inline
@@ -26,6 +36,9 @@ function Radio({nombreCalificacion}) {
             name="group1"
             type={"radio"}
             id={"radio3"}
+            value={3}
+            checked={state === 3}
+            onChange={onOptionChange}
             />
             <Form.Check
             inline
@@ -33,6 +46,9 @@ function Radio({nombreCalificacion}) {
             name="group1"
             type={"radio"}
             id={"radio4"}
+            value={4}
+            checked={state === 4}
+            onChange={onOptionChange}
             />
             <Form.Check
             inline
@@ -40,6 +56,9 @@ function Radio({nombreCalificacion}) {
             name="group1"
             type={"radio"}
             id={"radio5"}
+            value={5}
+            checked={state === 5}
+            onChange={onOptionChange}
             />
         </div>
     </Form>
