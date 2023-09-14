@@ -28,14 +28,7 @@ def loginAso():
     correo = authInfo['correoAsociacion']
     contrasena = authInfo['contrasena']
     usuario = Usuario.fetchUsuarioAso(correo, contrasena)
-<<<<<<< HEAD
-
     if (not usuario):
-=======
-    
-    return jsonify({'statusCode': 200, 'user': {'tipoUsuario': 0}, 'auth_token': "token.decode('UTF-8')",  'errors': []}) #temporal para logearse
-    if (not usuario): 
->>>>>>> 620435f4453c6f3bdef4420f8f2654b512eb7ccc
         res = {'statusCode': 400, 'user': '', 'auth_token':'', 'errors': ['El usuario o la contraseña no son correctas']}
         res = jsonify(res)
         return res
@@ -78,8 +71,8 @@ def loginEstudiante():
     correo = authInfo['correoEstudiante']
     contrasena = authInfo['contrasena']
     usuario = Usuario.fetchUsuarioEstudiante(correo, contrasena)
-    
-    if (not usuario): 
+
+    if (not usuario):
         res = {'statusCode': 400, 'user': '', 'auth_token':'', 'errors': ['El usuario o la contraseña no son correctas']}
         res = jsonify(res)
         return res
@@ -151,7 +144,7 @@ def selectEventos():
         res = jsonify(res)
         return res
 
-    res = jsonify({'statusCode': 200})
+    res = jsonify({'statusCode': 200, 'res': spRes})
     return res
 
 @app.route('/api/select/eventoinscrito', methods=['POST', 'OPTIONS'])
@@ -167,7 +160,7 @@ def selectEventosInscritos():
         res = jsonify(res)
         return res
 
-    res = jsonify({'statusCode': 200})
+    res = jsonify({'statusCode': 200, 'res': spRes})
     return res
 
 @app.route('/api/select/eventopasado', methods=['POST', 'OPTIONS'])
@@ -183,7 +176,7 @@ def selectEventosPasados():
         res = jsonify(res)
         return res
 
-    res = jsonify({'statusCode': 200})
+    res = jsonify({'statusCode': 200, 'res': spRes})
     return res
 
 @app.route('/api/insert/inscripcion', methods=['POST', 'OPTIONS'])
@@ -236,7 +229,7 @@ def selectActividades():
         res = jsonify(res)
         return res
 
-    res = jsonify({'statusCode': 200})
+    res = jsonify({'statusCode': 200, 'res': spRes})
     return res
 
 @app.route('/api/insert/Encuesta', methods=['POST', 'OPTIONS'])
@@ -321,7 +314,7 @@ def selectAsocias():
         res = jsonify(res)
         return res
 
-    res = jsonify({'statusCode': 200})
+    res = jsonify({'statusCode': 200, 'res': spRes})
     return res
 
 @app.route('/api/insert/propuestas', methods=['POST', 'OPTIONS'])
@@ -344,10 +337,8 @@ def selectAsocias():
         res = jsonify(res)
         return res
 
-    res = jsonify({'statusCode': 200})
+    res = jsonify({'statusCode': 200, 'res': spRes})
     return res
-
-
 
 if __name__ == '__main__':
     app.run(debug=True)
