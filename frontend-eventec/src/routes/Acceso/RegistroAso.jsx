@@ -2,10 +2,11 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import { Button } from 'react-bootstrap';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import { registerAso, useAuthDispatch } from '../../context';
 import styles from "./acceso.module.css";
+import esCorreoEstudiantec from '../../util';
 
 const RegistroAso = () => {
   const [nombreAsociacion, setNombreAsociacion] = useState("");
@@ -19,9 +20,14 @@ const RegistroAso = () => {
     e.preventDefault();
     let payload = {nombreAsociacion, correoAsociacion, contrasena}
     try {
+      if (!correoAsociacion || !contrasena || !nombreAsociacion) {alert("Todos los datos deben ser rellenados"); return;}
+      if (!esCorreoEstudiantec(correoAsociacion)) {alert("Debe utilizar un correo estudiantil"); return;}
+
+
       let response = await registerAso(dispatch, payload)
+      if (response.statusCode == 400) {alert("Usuario o contrasena incorrecta!"); return;}
       if (!response.user) return;
-      navigate("/")
+      navigate("/calendar")
     } catch (error) {
       console.log(error)
     }
