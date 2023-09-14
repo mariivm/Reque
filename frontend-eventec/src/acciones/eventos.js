@@ -53,12 +53,12 @@ export async function fetchEventosInscritos(carne) {
     }
 }
 
-export async function fetchEventosPropios(asociacion) {
+export async function fetchEventosPropios(asociacionid) {
     const requestOptions = {
         method: 'POST',
         mode: "cors",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(asociacion),
+        body: JSON.stringify(asociacionid),
       };
     
 
